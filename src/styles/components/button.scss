@@ -1,0 +1,54 @@
+.btn {
+    padding: var(--padding-md);
+    min-height: 42px; 
+    min-width: 90px;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center
+}
+
+.btn-primary {
+    @extend .btn;
+    background-color: var(--color-blue-5);
+}
+
+.btn-primary--round {
+    @extend .btn-primary;
+    border-radius: var(--border-radius-lg);
+}
+
+.btn-outlined {
+    @extend .btn;
+    border: 1px solid;
+    border-color: var(--color-neutral-3);
+}
+
+.btn-outlined--lg {
+    @extend .btn-outlined;
+    min-height: 45px;
+    min-width: 120px;
+}
+
+.btn-outlined--round {
+    @extend .btn-outlined;
+    border-radius: var(--border-radius-xl);
+}
+
+.btn-outlined--round-lg {
+    @extend .btn-outlined--round;
+    min-height: 55px;
+    min-width: 90px;
+    border-radius: var(--border-radius-xl);
+}
+
+.btn-filled--round-lg {
+    @extend .btn;
+    min-height: 55px;
+    min-width: 90px;
+    border-radius: var(--border-radius-xl);
+}

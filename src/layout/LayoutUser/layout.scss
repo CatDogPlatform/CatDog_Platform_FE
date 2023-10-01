@@ -1,0 +1,15 @@
+@use "sass:math";
+
+.main-body {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    .side-nav {
+        width: 350px;
+        height: 100%;
+    }
+
+    .content {
+        width: calc(100% - 100px)
+    }
+}
