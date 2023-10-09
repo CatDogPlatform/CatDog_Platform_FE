@@ -1,0 +1,36 @@
+.mess {
+
+
+    &-title {
+        display: flex;
+
+        span {
+            margin-left: 50px;
+        }
+    }
+
+
+    &-mess {
+        width: 100px;
+        margin-right: 70px;
+    }
+
+    &-avatar {
+        background: linear-gradient(to right, red, yellow);
+        border-radius: 50px;
+        width: 55px;
+        height: 55px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    &-chat {
+        display: flex;
+        margin-left: 30px;
+    }
+
+    &-time {
+        margin-bottom: 60px;
+        font-size: 12px;
+    }
+}
