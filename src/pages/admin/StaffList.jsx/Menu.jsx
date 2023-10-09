@@ -5,7 +5,7 @@ import TabContext from "@mui/lab/TabContext"
 import TabList from "@mui/lab/TabList"
 import TabPanel from "@mui/lab/TabPanel"
 import Searchbar from "../../../layout/LayoutAdmin/Topbar/Searchbar"
-
+import "./Menu.scss"
 import {
     Paper,
     Table,
@@ -22,6 +22,7 @@ export default function StaffTable() {
         setValue(newValue)
     }
 
+ 
     return (
         <Box sx={{ width: "100%", typography: "body1" }}>
             <TabContext value={value}>
@@ -36,7 +37,7 @@ export default function StaffTable() {
                 </Box>
                 <TabPanel value="passed">
                     <TableContainer component={Paper}>
-                        <div className="search-bar">
+                        <div className="search-bar" style={{ width: "300px" }}>
                             <Searchbar />
                         </div>
                         <Table

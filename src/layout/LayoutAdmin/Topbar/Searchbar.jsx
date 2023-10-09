@@ -14,6 +14,7 @@ const Searchbar = () => {
                 </div>
 
                 <input
+                    style={{ outline: "none" }}
                     type="text"
                     className="search__field"
                     placeholder="Search for anything"
