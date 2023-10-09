@@ -1,0 +1,42 @@
+.post {
+    margin-top: 30px;
+    border: 1px solid #e0e0e0;
+    width: 638px;
+    height: 135px;
+    border-radius: 15px;
+
+    &-input {
+        padding-left: 15px;
+        padding-top: 15px;
+
+        input {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border: #e0e0e0;
+            width: 580px;
+            outline: none;
+        }
+
+    }
+
+    &-custom {
+        border: none;
+        height: 2px;
+        background-color: #dad3d3;
+        width: 91%;
+    }
+
+    &-draft {
+        cursor: pointer;
+        font-weight: 500;
+        border-radius: 30px;
+        margin: 10px;
+        padding: 6px 27px;
+    }
+
+    &-draft:hover {
+        opacity: 0.5;
+        transition: 0.5s;
+    }
+
+}

@@ -20,7 +20,7 @@
 
     &-input {
         input {
-            padding: 18px 100px 18px 30px;
+            padding: 18px 140px 18px 30px;
             border-radius: 25px;
             border: 1px solid #8b8989;
         }
@@ -36,11 +36,18 @@
 
     &-confirm {
         button {
-            padding: 18px 125px;
+            cursor: pointer;
+            padding: 18px 140px;
             border-radius: 30px;
             background-color: #eb5757;
             border: none;
             color: white;
+            font-size: 20px;
+        }
+
+        button:hover {
+            transition: 0.5s;
+            opacity: 0.5;
         }
     }
 }
