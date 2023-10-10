@@ -22,7 +22,12 @@ export default function StaffTable() {
         setValue(newValue)
     }
 
- 
+    React.useEffect(() => {
+        setValue("passed")
+
+        return () => {}
+    }, [])
+
     return (
         <Box sx={{ width: "100%", typography: "body1" }}>
             <TabContext value={value}>

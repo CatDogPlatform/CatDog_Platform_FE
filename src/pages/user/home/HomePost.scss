@@ -39,4 +39,12 @@
         transition: 0.5s;
     }
 
+    &-icon {
+        color: rgb(179, 171, 171);
+    }
+
+    &-icon:hover {
+        border: 2px solid rgb(214, 204, 204);
+        border-radius: 5px;
+    }
 }
