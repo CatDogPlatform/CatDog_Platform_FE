@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import "./HomePost.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faImage } from "@fortawesome/free-solid-svg-icons"
-
+import { LuImage } from "react-icons/lu"
 const HomePost = () => {
     const [images, setImages] = useState([])
 
@@ -51,13 +51,7 @@ const HomePost = () => {
                             cursor: "pointer",
                         }}
                     >
-                        <FontAwesomeIcon
-                            icon={faImage}
-                            style={{
-                                height: "27px",
-                                opacity: 0.3,
-                            }}
-                        />
+                        <LuImage size={30} className="post-icon" />
                     </button>
                     {images.map((image, index) => (
                         <img
