@@ -19,16 +19,5 @@ $sidebar-height: 672px;
         height: $sidebar-height - 300px;
     }
     
-    .search .search__input .search__field {
-        padding-left: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 45px;
-        width: 50%;
-        border-radius: 30px;
-        border: none;
-        background-color: #F2F2F2;
-    
-    }
+  
 }

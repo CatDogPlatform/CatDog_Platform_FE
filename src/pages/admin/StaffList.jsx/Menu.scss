@@ -1,3 +1,15 @@
 .search-bar {
     outline: none;
 }
+.panel_one {
+    color: #EB5757; /* Màu chữ Passed */
+    /* Đặt màu của thanh indicator ở đây */
+    &.Mui-selected::after {
+      background-color: #EB5757; /* Màu đỏ */
+     
+    }
+    .panel_one.Mui-selected {
+      color: #FF0000; /* Đặt màu cho label "Passed" khi nó được chọn thành màu đỏ */
+    }
+  }
+  

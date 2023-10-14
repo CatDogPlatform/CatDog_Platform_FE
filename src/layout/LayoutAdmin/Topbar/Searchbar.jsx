@@ -17,7 +17,7 @@ const Searchbar = () => {
                     style={{ outline: "none" }}
                     type="text"
                     className="search__field"
-                    placeholder="Search for anything"
+                    placeholder="Search by ID,product, or others..."
                 />
             </div>
         </div>
