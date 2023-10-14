@@ -11,7 +11,7 @@ const Home = () => {
                 <div>
                     <HomePost />
                 </div>
-                <div style={{ marginLeft: "100px" }}>
+                <div style={{ marginLeft: "70px" }}>
                     <HomeFriend />
                 </div>
             </div>
