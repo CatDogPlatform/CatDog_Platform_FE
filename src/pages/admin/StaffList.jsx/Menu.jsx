@@ -126,6 +126,7 @@ export default function StaffTable() {
                             }`}
                             label={<div>abc</div>}
                             value="passed"
+                            style={{ color: "red" }}
                         />
 
                         <Tab label="Rejected" value="rejected" />
