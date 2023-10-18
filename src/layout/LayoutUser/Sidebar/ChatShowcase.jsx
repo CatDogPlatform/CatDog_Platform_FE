@@ -26,6 +26,8 @@ const ChatShowcase = () => {
                                     width: "165px",
                                     textOverflow: "ellipsis",
                                     wordWrap: "break-word",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
                                 }}
                             >
                                 {item.mess}

@@ -6,11 +6,14 @@ import Login from "../pages/user/auth/Login"
 import LayoutAdmin from "../layout/LayoutAdmin/layout"
 import StaffTable from "../pages/admin/StaffList.jsx/Menu"
 import LoginAdmin from "../pages/user/staff/auth/Login"
+import GoodStore from "../pages/store/GoodStore"
+import SignUp from "../pages/user/auth/SignUp"
 const AppRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
                 <Route path="/" element={<LayoutUser />}>
                     <Route path="/" element={<Home />} />
                 </Route>
@@ -22,7 +25,9 @@ const AppRoutes = () => {
                         element={<StaffTable />}
                     ></Route>
                 </Route>
-
+                <Route path="/" element={<LayoutUser />}>
+                    <Route path="/goods" element={<GoodStore />} />
+                </Route>
                 <Route path="/staff" element={<LayoutAdmin />}>
                     {/* day la routes cua staff */}
                 </Route>
