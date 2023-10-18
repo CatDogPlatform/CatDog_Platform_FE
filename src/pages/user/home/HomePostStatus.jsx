@@ -12,7 +12,7 @@ function HomePostStatus() {
                     <div
                         className="post_fake"
                         style={{
-                            marginBottom: "40px",
+                            marginBottom: "41px",
                             borderBottom: "1px solid grey",
                         }}
                     >
