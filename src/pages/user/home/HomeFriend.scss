@@ -1,0 +1,42 @@
+.friend {
+    border: 2px solid #ededed;
+    width: 340px;
+    margin-top: 26px;
+    border-radius: 15px;
+
+    &-title {
+        margin-top: 10px;
+        padding: 15px;
+    }
+
+    &-custom {
+        border: none;
+        height: 1px;
+        background-color: #dad3d3;
+        width: 85%;
+        margin-bottom: 20px;
+    }
+
+    &-chat {
+        display: flex;
+        margin-left: 30px;
+    }
+
+    &-status {
+        margin-bottom: 60px;
+        font-size: 10px;
+    }
+
+    &-avatar {
+        background: linear-gradient(to right, rgb(37, 79, 230), rgb(65, 161, 39));
+        border-radius: 50px;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 30px;
+        text-align: center;
+
+    }
+
+
+
+}

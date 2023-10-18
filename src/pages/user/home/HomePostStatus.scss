@@ -1,0 +1,53 @@
+.posted{
+   margin-top: 40px;
+ 
+.poster{
+    margin-bottom: 10px;
+    border-bottom:  1px solid grey;
+    width: 650px;
+    
+}
+
+.posted_header{
+    display: flex;  
+   
+    .posted_image{
+        
+        img{
+            border-radius: 100%;
+            width: 60px;
+            height: 60px;
+        }
+    }
+    .posted_infor{
+        margin-left: 10px;
+        margin-top: 10px;
+        .posted_name{
+            font-weight: 900;
+        }
+        .posted_time{
+            color: grey;
+            font-size: 14px;
+        }
+       
+    }
+}
+.posted_body{
+    margin-top: 10px;
+    font-size: 14px;
+}
+.posted_body_img{
+    img{
+        width: 100%;
+        height: 350px;
+        margin-top: 20px;
+    }
+}
+.posted_footer{
+    display: flex;
+    .posted_icon1{
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+}
+}
