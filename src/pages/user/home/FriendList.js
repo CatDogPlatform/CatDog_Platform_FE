@@ -1,26 +1,83 @@
 export const friendList = [
     {
-        avatar: 'asds',
+        avatar: "asds",
         name: "Home",
-        follow: '100 follow',
-        status:'online'
+        follow: "100 follow",
+        status: "online",
     },
     {
-        avatar: 'xyz',
+        avatar: "xyz",
         name: "Home",
-        follow: '100 follow',
-        status:'online'
+        follow: "100 follow",
+        status: "online",
     },
     {
-        avatar: 'efg',
+        avatar: "efg",
         name: "Home",
-        follow: '100 follow',
-        status:'online'
+        follow: "100 follow",
+        status: "online",
     },
     {
-        avatar: 'abc',
+        avatar: "abc",
         name: "Home",
-        follow: '100 follow',
-        status:'online'
-    }
+        follow: "100 follow",
+        status: "online",
+    },
+]
+
+export const postList = [
+    {
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMgsE0q1pgAG5GY3rltz4pyHNjV5z6rty9AAGdt7KCBQ&s",
+        Image: "https://www.webbox.co.uk/wp-content/uploads/2019/04/shutterstock_1095001973.jpg",
+        name: "Homie",
+        script: "If you just because of its cute appearance, silly expression so love, please do not keep it.",
+        time: "2 hour ago",
+        likeNumber: "15",
+        cmtNumber: "20",
+    },
+    {
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMgsE0q1pgAG5GY3rltz4pyHNjV5z6rty9AAGdt7KCBQ&s",
+        Image: "https://www.webbox.co.uk/wp-content/uploads/2019/04/shutterstock_1095001973.jpg",
+        name: "dai",
+        script: "sdsdsdasdasdasdasdsad",
+        time: "2 hour ago",
+        likeNumber: "15",
+        cmtNumber: "20",
+    },
+    {
+        avatar: "https://tse1.mm.bing.net/th?id=OIP.hrYj080sFT0dWs_J87kdRQHaE6&pid=Api&rs=1&c=1&qlt=95&w=175&h=116",
+        Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMgsE0q1pgAG5GY3rltz4pyHNjV5z6rty9AAGdt7KCBQ&s",
+        name: "Homie",
+        script: "sdsdsdasdasdasdasdsad",
+        time: "2 hour ago",
+        likeNumber: "15",
+        cmtNumber: "20",
+    },
+    {
+        avatar: "https://tse1.mm.bing.net/th?id=OIP.hrYj080sFT0dWs_J87kdRQHaE6&pid=Api&rs=1&c=1&qlt=95&w=175&h=116",
+        Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMgsE0q1pgAG5GY3rltz4pyHNjV5z6rty9AAGdt7KCBQ&s",
+        name: "Homie",
+        script: "sdsdsdasdasdasdasdsad",
+        time: "2 hour ago",
+        likeNumber: "15",
+        cmtNumber: "20",
+    },
+    {
+        avatar: "https://tse1.mm.bing.net/th?id=OIP.hrYj080sFT0dWs_J87kdRQHaE6&pid=Api&rs=1&c=1&qlt=95&w=175&h=116",
+        Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMgsE0q1pgAG5GY3rltz4pyHNjV5z6rty9AAGdt7KCBQ&s",
+        name: "Homie",
+        script: "sdsdsdasdasdasdasdsad",
+        time: "2 hour ago",
+        likeNumber: "15",
+        cmtNumber: "20",
+    },
+    {
+        avatar: "https://tse1.mm.bing.net/th?id=OIP.hrYj080sFT0dWs_J87kdRQHaE6&pid=Api&rs=1&c=1&qlt=95&w=175&h=116",
+        Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMgsE0q1pgAG5GY3rltz4pyHNjV5z6rty9AAGdt7KCBQ&s",
+        name: "Homie",
+        script: "sdsdsdasdasdasdasdsad",
+        time: "2 hour ago",
+        likeNumber: "15",
+        cmtNumber: "20",
+    },
 ]
