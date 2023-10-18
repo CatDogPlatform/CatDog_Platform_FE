@@ -1,9 +1,30 @@
-import React from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faShieldDog } from "@fortawesome/free-solid-svg-icons"
+import React, { useState } from "react"
 import "./Login.scss"
+import SignUp from "./SignUp"
+import { Link } from "react-router-dom"
 
 const Login = () => {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState(null)
+
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value)
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value)
+    }
+
+    const handleLogin = () => {
+        if (!username || !password) {
+            setError(alert("Vui lòng nhập dữ liệu"))
+        } else console.log("Thực hiện đăng nhập...")
+
+        setError(null)
+        
+    }
+
     return (
         <div className="login">
             <div className="login-sign">
@@ -12,22 +33,35 @@ const Login = () => {
             <div>
                 <p className="login-ask">
                     Don't have an account ?{" "}
-                    <span className="login-register">Register</span>
+                    <Link to="/signup" className="login-register">
+                        Register
+                    </Link>
                 </p>
             </div>
             <div className="login-input">
                 <div>
-                    <input placeholder="Username" />
+                    <input
+                        placeholder="Username"
+                        value={username}
+                        onChange={handleUsernameChange}
+                    />
                 </div>
                 <div>
-                    <input placeholder="Password" style={{ marginTop: "20px" }} />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        style={{ marginTop: "20px" }}
+                        value={password}
+                        onChange={handlePasswordChange}
+                    />
                 </div>
             </div>
             <div className="login-forgot">
                 <p>Forgot Password ?</p>
             </div>
+            {error && <div className="error-message">{error}</div>}
             <div className="login-confirm">
-                <button>Login</button>
+                <button onClick={handleLogin}>Login</button>
             </div>
         </div>
     )
