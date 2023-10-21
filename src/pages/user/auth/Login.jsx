@@ -1,15 +1,17 @@
 import React, { useState } from "react"
 import "./Login.scss"
 import SignUp from "./SignUp"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
 
 const Login = () => {
-    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
     const handleUsernameChange = (e) => {
-        setUsername(e.target.value)
+        setEmail(e.target.value)
     }
 
     const handlePasswordChange = (e) => {
@@ -17,12 +19,31 @@ const Login = () => {
     }
 
     const handleLogin = () => {
-        if (!username || !password) {
+        if (!email || !password) {
             setError(alert("Vui lòng nhập dữ liệu"))
-        } else console.log("Thực hiện đăng nhập...")
+        } else {
+            const url = new URL("https://64a7842d096b3f0fcc8165a8.mockapi.io/pdfAPi")
+            url.searchParams.append("email", email)
+            url.searchParams.append("password", password)
 
-        setError(null)
-        
+            axios
+                .get(url)
+                .then((response) => {
+                    console.log(response)
+                    if (response.data.length > 0) {
+                        alert("success")
+                        navigate("/")
+                    } else {
+                        setError(
+                            "Đăng nhập thất bại. Vui lòng kiểm tra tài khoản và mật khẩu.",
+                        )
+                    }
+                })
+                .catch((error) => {
+                    setError("Đăng nhập thất bại. Đã xảy ra lỗi.")
+                    console.error(error)
+                })
+        }
     }
 
     return (
@@ -41,8 +62,8 @@ const Login = () => {
             <div className="login-input">
                 <div>
                     <input
-                        placeholder="Username"
-                        value={username}
+                        placeholder="Email"
+                        value={email}
                         onChange={handleUsernameChange}
                     />
                 </div>
