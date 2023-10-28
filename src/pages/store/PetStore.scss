@@ -1,0 +1,33 @@
+.pets{
+    padding: 10px 50px 0 100px;
+
+    &-head {
+        display: flex;
+    }
+
+    &-title {
+        flex: 0.9;
+        font-weight: 900;
+    }
+
+    &-sell {
+        margin-top: 20px;
+        width: 92px;
+        height: 32px;
+        border-radius: 20px;
+        color: white;
+        background-color: #eb5757;
+        border: none;
+    }
+
+    button:hover {
+        opacity: 0.5;
+        transition: 0.5s;
+    }
+
+    &-body {
+        margin-top: 20px;
+    }
+
+
+}

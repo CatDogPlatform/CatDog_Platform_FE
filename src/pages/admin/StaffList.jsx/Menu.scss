@@ -12,4 +12,9 @@
       color: #FF0000; /* Đặt màu cho label "Passed" khi nó được chọn thành màu đỏ */
     }
   }
+.panel_passed{
+    .MuiTabs-indicator{
+      background-color: red;
+    }
+  }
   

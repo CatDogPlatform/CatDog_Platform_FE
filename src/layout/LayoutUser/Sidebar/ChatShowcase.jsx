@@ -14,7 +14,7 @@ const ChatShowcase = () => {
                 {chatList.map((item) => (
                     <div className="mess-chat">
                         <div className="mess-avatar">
-                            <p>{item.avatar}</p>
+                            <img src={item.avatar} />
                         </div>
                         <div style={{ marginLeft: "20px" }} className="mess-mess">
                             <span>{item.name}</span>
