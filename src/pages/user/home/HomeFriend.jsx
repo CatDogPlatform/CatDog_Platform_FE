@@ -13,7 +13,10 @@ const HomeFriend = () => {
                 {friendList.map((item) => (
                     <div className="friend-chat">
                         <div className="friend-avatar">
-                            <p style={{ marginBottom: "100px" }}>{item.avatar}</p>
+                            <img
+                                style={{ marginBottom: "100px" }}
+                                src={item.avatar}
+                            />
                         </div>
                         <div
                             style={{ marginLeft: "20px", width: "165px" }}

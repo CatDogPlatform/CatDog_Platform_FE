@@ -8,6 +8,8 @@ import StaffTable from "../pages/admin/StaffList.jsx/Menu"
 import LoginAdmin from "../pages/user/staff/auth/Login"
 import GoodStore from "../pages/store/GoodStore"
 import SignUp from "../pages/user/auth/SignUp"
+import PetStore from "../pages/store/PetStore"
+import PetManagement from "../pages/storeManagement/PetManagement"
 const AppRoutes = () => {
     return (
         <BrowserRouter>
@@ -27,6 +29,8 @@ const AppRoutes = () => {
                 </Route>
                 <Route path="/" element={<LayoutUser />}>
                     <Route path="/goods" element={<GoodStore />} />
+                    <Route path="/pets" element={<PetStore />} />
+                    <Route path="/petsmanagement" element={<PetManagement />} />
                 </Route>
                 <Route path="/staff" element={<LayoutAdmin />}>
                     {/* day la routes cua staff */}
