@@ -1,30 +1,33 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
-import "./Home.scss"
-import HomePost from "./HomePost"
-import HomeFriend from "./HomeFriend"
-import HomePostStatus from "./HomePostStatus"
+import "./Home.scss";
+import HomePost from "./HomePost";
+import HomeFriend from "./HomeFriend";
+import HomePostStatus from "./HomePostStatus";
 
 const Home = () => {
     return (
-        <div>
+        <div
+            style={{
+                justifyContent: "center",
+                display: "flex",
+                flexDirection: "row",
+                gap: "5px",
+            }}
+        >
             <div
                 style={{
-                    display: "flex",
-                    marginLeft: "100px",
-                    position: "relative",
+                    marginLeft: "50px",
+                    marginRight: "50px",
                 }}
             >
-                <div>
+                <div style={{ overflowY: "auto" }}>
                     <HomePost />
                     <HomePostStatus />
                 </div>
-                <div style={{ position: "fixed", right: "0" }}>
-                    <HomeFriend />
-                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

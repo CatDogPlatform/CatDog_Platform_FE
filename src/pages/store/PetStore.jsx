@@ -1,6 +1,7 @@
-import React from "react"
-import "./PetStore.scss"
-import PetItem from "./PetItem"
+import React from "react";
+import "./PetStore.scss";
+import PetItem from "./PetItem";
+import axios from "axios";
 
 function PetStore() {
     return (
@@ -56,7 +57,7 @@ function PetStore() {
                 <PetItem />
             </div>
         </div>
-    )
+    );
 }
 
-export default PetStore
+export default PetStore;

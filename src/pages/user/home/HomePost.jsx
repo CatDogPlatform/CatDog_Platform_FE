@@ -1,36 +1,51 @@
-import React, { useState } from "react"
-import "./HomePost.scss"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faImage } from "@fortawesome/free-solid-svg-icons"
-import { LuImage } from "react-icons/lu"
+import React, { useState } from "react";
+import "./HomePost.scss";
+import { LuImage } from "react-icons/lu";
+import axios from "axios";
 const HomePost = () => {
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState([]);
+    const [content, setContent] = useState([]);
 
     const handleImageChange = (e) => {
-        const file = e.target.files[0]
+        const file = e.target.files[0];
 
         if (file) {
-            const reader = new FileReader()
+            const reader = new FileReader();
 
             reader.onload = (event) => {
-                const newImages = [...images, event.target.result]
-                setImages(newImages)
-            }
+                const newImages = [...images, event.target.result];
+                setImages(newImages);
+            };
 
-            reader.readAsDataURL(file)
+            reader.readAsDataURL(file);
         }
-    }
+    };
 
-    const fileInputRef = React.createRef()
+    const handleAddImage = () => {};
 
-    const handleAddButtonClick = () => {
-        fileInputRef.current.click()
-    }
+    const fileInputRef = React.createRef();
+
+    const handleCreatePost = async () => {
+        const res = await axios
+            .post(process.env.API_URL + "/posts/", {
+                content,
+            })
+            .then((res) => {
+                setContent((prev) => [...prev, res]);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <div className="post">
             <div className="post-input">
-                <input type="text" placeholder="Post something" />
+                <input
+                    type="text"
+                    name="content"
+                    placeholder="Post something"
+                />
             </div>
             <hr className="post-custom" />
             <div style={{ display: "flex" }}>
@@ -43,7 +58,7 @@ const HomePost = () => {
                         ref={fileInputRef}
                     />
                     <button
-                        onClick={handleAddButtonClick}
+                        onClick={handleAddImage}
                         style={{
                             margin: "10px 0px 10px 22px",
                             border: "none",
@@ -64,18 +79,9 @@ const HomePost = () => {
                         />
                     ))}
                 </div>
-                <div style={{ flex: "0.6" }}>
+                <div style={{ flex: "0.25" }}>
                     <button
-                        className="post-draft"
-                        style={{
-                            backgroundColor: "white",
-                            border: "2px solid #bdbdbd",
-                            color: "#8f8f8f",
-                        }}
-                    >
-                        Draft
-                    </button>
-                    <button
+                        onClick={handleCreatePost}
                         className="post-draft"
                         style={{
                             backgroundColor: "#eb5757",
@@ -88,7 +94,7 @@ const HomePost = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default HomePost
+export default HomePost;

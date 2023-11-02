@@ -1,19 +1,34 @@
-import React from "react"
-import "./PetItem.scss"
-import { petList } from "./ItemList"
-import { useState } from "react"
-import { DetailModal } from "./DetailModal"
+import React from "react";
+import "./PetItem.scss";
+import { petList } from "./ItemList";
+import { useState } from "react";
+import { DetailModal } from "./DetailModal";
+import axios from "axios";
 function PetItem() {
-    const [isDetailModalOpen, setIsDetailModalOpen] = useState(false)
-    const [selectedCandidate, setSelectedCandidate] = useState(null)
+    const [pets, setPets] = React.useState([]);
+
+    const fetchPets = async () => {
+        const res = await axios.get(
+            "https://petdom-apis.onrender.com/api/posts?search="
+        );
+        console.log(res);
+        setPets(res.data);
+    };
+
+    React.useEffect(() => {
+        fetchPets();
+    }, []);
+
+    const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+    const [selectedCandidate, setSelectedCandidate] = useState(null);
     const handleCloseDetailModal = () => {
-        setIsDetailModalOpen(false)
-    }
+        setIsDetailModalOpen(false);
+    };
 
     const handleDetailClick = (item) => {
-        setSelectedCandidate(item)
-        setIsDetailModalOpen(true)
-    }
+        setSelectedCandidate(item);
+        setIsDetailModalOpen(true);
+    };
     return (
         <div
             className="StoreItem"
@@ -24,33 +39,34 @@ function PetItem() {
                 gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
             }}
         >
-            {petList.map((item) => (
-                <div style={{ margin: "10px 0 50px 0" }}>
-                    <div className="StoreItem-img">
-                        <img src={item.avatar} alt="" />
+            {pets &&
+                pets.map((item) => (
+                    <div style={{ margin: "10px 0 50px 0" }}>
+                        <div className="StoreItem-img">
+                            <img src={item.avatar} alt="" />
+                        </div>
+                        <p
+                            className="item-name"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleDetailClick(item)}
+                        >
+                            {item.name}
+                        </p>
+                        <p className="item-name" style={{ color: "#0F60DA" }}>
+                            {item.price}
+                        </p>
+                        <span style={{ fontSize: "12px", color: "#888484" }}>
+                            {item.user} - {item.location}
+                        </span>
                     </div>
-                    <p
-                        className="item-name"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleDetailClick(item)}
-                    >
-                        {item.name}
-                    </p>
-                    <p className="item-name" style={{ color: "#0F60DA" }}>
-                        {item.price}
-                    </p>
-                    <span style={{ fontSize: "12px", color: "#888484" }}>
-                        {item.user} - {item.location}
-                    </span>
-                </div>
-            ))}
+                ))}
             <DetailModal
                 isOpen={isDetailModalOpen}
                 handleCloseDetailModal={handleCloseDetailModal}
                 item={selectedCandidate}
             />
         </div>
-    )
+    );
 }
 
-export default PetItem
+export default PetItem;
