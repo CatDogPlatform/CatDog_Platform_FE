@@ -1,0 +1,82 @@
+.pets_title{
+   margin-left: 400px;
+   margin-bottom: 50px;
+}
+.image{
+  display: flex;
+  font-weight: 900;
+  margin-left: 35px;
+ 
+  .image-input{
+    margin-right: 40px;
+  }
+}
+.pets_management_header{
+        display: flex;
+   .input{
+    font-weight: 800;
+    margin-bottom: 60px;
+    margin-top: 20px;
+   } 
+   
+  input{
+    padding: 18px 500px 18px 30px ;
+    border-radius: 10px;
+    border: 1px solid #828282;
+    margin-bottom: 30px;
+    // width: 500px;
+  }
+  
+  .pets_management_cc{
+    margin-top: 10px;
+    margin-left: 30px;
+  }
+  .input_value{
+    margin-left: 80px;
+  }
+ 
+}
+.buttons {
+  width: 694px;
+  height: 200px;
+  border: 2px solid #828282; /* Màu viền và độ dày của viền */
+  border-radius: 10px; /* Độ cong của góc nút */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px 10px 77px;
+  background-color: white;
+  cursor: pointer;
+  position: relative; /* Thêm thuộc tính position */
+  overflow: hidden; /* Ẩn nội dung vượt ra khỏi khung */
+  
+}
+
+.buttons img {
+  width: 100%; /* Đảm bảo rằng hình ảnh chiếm toàn bộ khu vực nút */
+  height: 100%; /* Đảm bảo rằng hình ảnh chiếm toàn bộ khu vực nút */
+  object-fit: cover; /* Để hình ảnh ôm lấy toàn bộ khu vực của nút */
+  object-position: center; /* Để hình ảnh nằm giữa của nút */
+}
+.select-new-image-button{
+  border-radius: 20px;
+  border: 1px solid #828282;
+  cursor: pointer;
+ 
+}
+.select-new-image-button:hover{
+  opacity: 0.5;
+  transition: 1s;
+}
+.choose-image{
+  margin: 20px 0px 0px 300px;
+  
+}
+.submit{
+  margin-left: 300px;
+}
+.submit-button:hover{
+  opacity: 0.5;
+  transition: 1s;
+}
+

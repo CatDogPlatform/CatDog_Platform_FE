@@ -10,6 +10,11 @@ import GoodStore from "../pages/store/GoodStore"
 import SignUp from "../pages/user/auth/SignUp"
 import PetStore from "../pages/store/PetStore"
 import PetManagement from "../pages/storeManagement/PetManagement"
+import GoodManagement from "../pages/storeManagement/GoodManagement"
+import PetInfor from "../pages/userPet/PetInfor"
+import PetListDetail from "../pages/userPet/PetListDetail"
+import GoodsListDetail from "../pages/userPet/GoodsListDetail"
+import GoodInfor from "../pages/userPet/GoodsInfor"
 const AppRoutes = () => {
     return (
         <BrowserRouter>
@@ -31,6 +36,11 @@ const AppRoutes = () => {
                     <Route path="/goods" element={<GoodStore />} />
                     <Route path="/pets" element={<PetStore />} />
                     <Route path="/petsmanagement" element={<PetManagement />} />
+                    <Route path="/goodsmanagement" element={<GoodManagement />} />
+                    <Route path="/petlist" element={<PetInfor />} />
+                    <Route path="/goodslist" element={<GoodInfor />} />
+                    <Route path="/petlistupdate" element={<PetListDetail />} />
+                    <Route path="/goodslistupdate" element={<GoodsListDetail />} />
                 </Route>
                 <Route path="/staff" element={<LayoutAdmin />}>
                     {/* day la routes cua staff */}

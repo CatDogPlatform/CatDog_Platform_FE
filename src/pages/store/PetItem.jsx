@@ -1,8 +1,19 @@
 import React from "react"
 import "./PetItem.scss"
 import { petList } from "./ItemList"
-
+import { useState } from "react"
+import { DetailModal } from "./DetailModal"
 function PetItem() {
+    const [isDetailModalOpen, setIsDetailModalOpen] = useState(false)
+    const [selectedCandidate, setSelectedCandidate] = useState(null)
+    const handleCloseDetailModal = () => {
+        setIsDetailModalOpen(false)
+    }
+
+    const handleDetailClick = (item) => {
+        setSelectedCandidate(item)
+        setIsDetailModalOpen(true)
+    }
     return (
         <div
             className="StoreItem"
@@ -18,7 +29,13 @@ function PetItem() {
                     <div className="StoreItem-img">
                         <img src={item.avatar} alt="" />
                     </div>
-                    <p className="item-name">{item.name}</p>
+                    <p
+                        className="item-name"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleDetailClick(item)}
+                    >
+                        {item.name}
+                    </p>
                     <p className="item-name" style={{ color: "#0F60DA" }}>
                         {item.price}
                     </p>
@@ -27,6 +44,11 @@ function PetItem() {
                     </span>
                 </div>
             ))}
+            <DetailModal
+                isOpen={isDetailModalOpen}
+                handleCloseDetailModal={handleCloseDetailModal}
+                item={selectedCandidate}
+            />
         </div>
     )
 }
