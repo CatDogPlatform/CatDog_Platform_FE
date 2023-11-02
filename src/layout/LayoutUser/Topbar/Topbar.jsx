@@ -19,7 +19,11 @@ const Topbar = () => {
             </div>
             <div className="nav-bar">
                 {menuList.map((item) => (
-                    <div className="nav-item">{item.title}</div>
+                    <div className="nav-item">
+                        <Link style={{ textDecoration: "none" }}>
+                            {item.title}
+                        </Link>
+                    </div>
                 ))}
             </div>
             <div className="user">
