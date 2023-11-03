@@ -53,7 +53,7 @@ function HomePostStatus() {
                                 className="posted_footer"
                                 style={{ paddingBottom: "50px" }}
                             >
-                                <div className="posted_icon1">
+                                {/* <div className="posted_icon1">
                                     <FontAwesomeIcon icon={faHeart} />
                                     <span
                                         style={{
@@ -63,7 +63,7 @@ function HomePostStatus() {
                                     >
                                         {item.likes}
                                     </span>
-                                </div>
+                                </div> */}
                                 {/* <div className="posted_icon1">
                                 <FontAwesomeIcon icon={faComment} />
                                 <span

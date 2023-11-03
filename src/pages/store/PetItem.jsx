@@ -9,7 +9,7 @@ function PetItem() {
 
     const fetchPets = async () => {
         const res = await axios.get(
-            "https://petdom-apis.onrender.com/api/posts?search="
+            "https://petdom-apis.onrender.com/api/pets?search="
         );
         console.log(res);
         setPets(res.data);
@@ -42,9 +42,6 @@ function PetItem() {
             {pets &&
                 pets.map((item) => (
                     <div style={{ margin: "10px 0 50px 0" }}>
-                        <div className="StoreItem-img">
-                            <img src={item.avatar} alt="" />
-                        </div>
                         <p
                             className="item-name"
                             style={{ cursor: "pointer" }}
@@ -56,7 +53,7 @@ function PetItem() {
                             {item.price}
                         </p>
                         <span style={{ fontSize: "12px", color: "#888484" }}>
-                            {item.user} - {item.location}
+                            {item.user.fullname}
                         </span>
                     </div>
                 ))}

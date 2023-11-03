@@ -20,7 +20,7 @@ const Topbar = () => {
             <div className="nav-bar">
                 {menuList.map((item) => (
                     <div className="nav-item">
-                        <Link style={{ textDecoration: "none" }}>
+                        <Link style={{ textDecoration: "none" }} to={item.link}>
                             {item.title}
                         </Link>
                     </div>
