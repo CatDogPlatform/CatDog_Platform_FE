@@ -3,8 +3,12 @@ import "./HomePost.scss";
 import { LuImage } from "react-icons/lu";
 import axios from "axios";
 const HomePost = () => {
+    const userId = ""; //DÙNG TẠM
+    // LẤY USERID TỪ LOCAL STORAGE
+
     const [images, setImages] = useState([]);
     const [content, setContent] = useState([]);
+    const [imageUrl, setImageUrl] = useState([]);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -28,7 +32,9 @@ const HomePost = () => {
     const handleCreatePost = async () => {
         const res = await axios
             .post(process.env.API_URL + "/posts/", {
+                userId,
                 content,
+                imageUrl,
             })
             .then((res) => {
                 setContent((prev) => [...prev, res]);
@@ -46,6 +52,7 @@ const HomePost = () => {
                     name="content"
                     placeholder="Post something"
                 />
+                <input type="text" name="imageUrl" placeholder="URL image" />
             </div>
             <hr className="post-custom" />
             <div style={{ display: "flex" }}>
@@ -57,6 +64,7 @@ const HomePost = () => {
                         style={{ display: "none" }}
                         ref={fileInputRef}
                     />
+
                     <button
                         onClick={handleAddImage}
                         style={{
