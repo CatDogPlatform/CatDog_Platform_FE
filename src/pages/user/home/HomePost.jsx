@@ -3,8 +3,9 @@ import "./HomePost.scss";
 import { LuImage } from "react-icons/lu";
 import axios from "axios";
 const HomePost = () => {
-    const userId = ""; //DÙNG TẠM
+    const userId = "";
     // LẤY USERID TỪ LOCAL STORAGE
+    //YOUR CODE HERE
 
     const [images, setImages] = useState([]);
     const [content, setContent] = useState([]);
@@ -31,7 +32,7 @@ const HomePost = () => {
 
     const handleCreatePost = async () => {
         const res = await axios
-            .post(process.env.API_URL + "/posts/", {
+            .post("https://petdom-apis.onrender.com/api/posts/", {
                 userId,
                 content,
                 imageUrl,
