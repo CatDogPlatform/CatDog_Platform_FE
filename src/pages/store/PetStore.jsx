@@ -2,13 +2,16 @@ import React from "react";
 import "./PetStore.scss";
 import PetItem from "./PetItem";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function PetStore() {
     return (
         <div className="pets">
             <div className="pets-head">
                 <h3 className="pets-title">Marketplace </h3>
-                <button className="pets-sell">+ Sell</button>
+                <Link to="/petsmanagement">
+                    <button className="pets-sell">+ Sell</button>
+                </Link>
             </div>
             <div className="pets-body">
                 <input

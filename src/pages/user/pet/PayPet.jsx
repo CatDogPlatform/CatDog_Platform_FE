@@ -1,10 +1,9 @@
 import React from "react";
-import "./PetItem.scss";
-import { petList } from "./ItemList";
+import "../../store/PetItem.scss";
 import { useState } from "react";
-import { DetailModal } from "./DetailModal";
+
 import axios from "axios";
-function PetItem() {
+function Paypet() {
     const [pets, setPets] = React.useState([]);
 
     const fetchPets = async () => {
@@ -47,11 +46,11 @@ function PetItem() {
                             {item.price}
                         </p>
                         <span style={{ fontSize: "12px", color: "#888484" }}>{item?.user?.fullname}</span>
+                        <button style={{ padding: "15px 100px", borderRadius: "100px", border: "none", backgroundColor: "#eb5757" }}>Pay</button>
                     </div>
                 ))}
-            <DetailModal isOpen={isDetailModalOpen} handleCloseDetailModal={handleCloseDetailModal} item={selectedCandidate} />
         </div>
     );
 }
 
-export default PetItem;
+export default Paypet;

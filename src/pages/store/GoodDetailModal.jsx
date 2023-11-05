@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 // import { useDispatch, useSelector } from "react-redux"
 
-export const DetailModal = ({ item, isOpen, handleCloseDetailModal }) => {
+export const GoodDetailModal = ({ item, isOpen, handleCloseDetailModal }) => {
     return (
         <Dialog open={isOpen} onClose={handleCloseDetailModal} maxWidth="sm" fullWidth>
             <DialogContent>
@@ -53,7 +53,7 @@ export const DetailModal = ({ item, isOpen, handleCloseDetailModal }) => {
                         }}
                     ></Box>
                     <div>
-                        <Link to="/paypet">pay</Link>
+                        <Link to="/paygoods">pay</Link>
                     </div>
                 </Box>
             </DialogContent>

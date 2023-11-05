@@ -8,11 +8,7 @@ const Topbar = () => {
     return (
         <div className="top-bar">
             <div className="logo">
-                <img
-                    src={logo}
-                    alt="logo"
-                    style={{ width: "150px", height: "40px" }}
-                ></img>
+                <img src={logo} alt="logo" style={{ width: "150px", height: "40px" }}></img>
             </div>
             <div className="search-bar">
                 <Searchbar />
@@ -27,7 +23,7 @@ const Topbar = () => {
                 ))}
             </div>
             <div className="user">
-                <Link to="/profile">User</Link>
+                <Link to="/userprofile">User</Link>
             </div>
         </div>
     );

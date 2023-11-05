@@ -9,9 +9,7 @@ function HomePostStatus() {
     const [posts, setPosts] = React.useState([]);
 
     const fetchPosts = async () => {
-        const res = await axios.get(
-            "https://petdom-apis.onrender.com/api/posts?search="
-        );
+        const res = await axios.get("https://petdom-apis.onrender.com/api/posts?search=");
         console.log(res);
         setPosts(res.data);
     };
@@ -33,10 +31,7 @@ function HomePostStatus() {
                         >
                             <div className="posted_header">
                                 <div className="posted_infor">
-                                    <span className="posted_name">
-                                        {" "}
-                                        {item.user.fullname}
-                                    </span>
+                                    <span className="posted_name"> {item?.user?.fullname}</span>
 
                                     <br />
                                 </div>
@@ -49,10 +44,7 @@ function HomePostStatus() {
                                     ))}
                                 </div>
                             </div>
-                            <div
-                                className="posted_footer"
-                                style={{ paddingBottom: "50px" }}
-                            >
+                            <div className="posted_footer" style={{ paddingBottom: "50px" }}>
                                 {/* <div className="posted_icon1">
                                     <FontAwesomeIcon icon={faHeart} />
                                     <span

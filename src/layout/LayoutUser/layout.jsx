@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import "./layout.scss";
 const LayoutUser = () => {
     return (
-        <div style={{ overflowY: "hidden" }}>
+        <div>
             <div className="header">
                 <Topbar />
             </div>

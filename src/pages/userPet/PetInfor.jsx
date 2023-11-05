@@ -1,13 +1,15 @@
-import React from "react"
-import { petList } from "../store/ItemList"
-import { Link } from "react-router-dom"
+import React from "react";
+import { petList } from "../store/ItemList";
+import { Link } from "react-router-dom";
 
 function PetInfor() {
     return (
         <div className="pets">
             <div className="pets-head">
                 <h3 className="pets-title">Your Personal Pet List </h3>
-                <button className="pets-sell">+ Sell</button>
+                <Link to="/petsmanagement">
+                    <button className="pets-sell">+ Sell</button>
+                </Link>
             </div>
             {/* <div className="pets-body"> */}
             {/* <input
@@ -80,7 +82,7 @@ function PetInfor() {
                 ))}
             </div>
         </div>
-    )
+    );
 }
 
-export default PetInfor
+export default PetInfor;
