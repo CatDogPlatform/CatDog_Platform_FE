@@ -39,6 +39,7 @@ function Paypet() {
             {pets &&
                 pets.map((item) => (
                     <div style={{ margin: "10px 0 50px 0" }}>
+                        <img src={item.images} alt="" />
                         <p className="item-name" style={{ cursor: "pointer" }} onClick={() => handleDetailClick(item)}>
                             {item.name}
                         </p>
