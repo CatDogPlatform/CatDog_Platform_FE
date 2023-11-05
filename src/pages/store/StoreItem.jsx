@@ -37,6 +37,7 @@ function StoreItem() {
             {goods &&
                 goods.map((item) => (
                     <div style={{ margin: "10px 0 50px 0" }}>
+                        <img src={item.images} alt="" />
                         <p className="item-name" onClick={() => handleDetailClick(item)} style={{ cursor: "pointer" }}>
                             {item.name}
                         </p>
