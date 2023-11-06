@@ -1,0 +1,12 @@
+.link{
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+.link:hover{
+    color: red;
+    opacity: 0.3;
+    transition: 0.5s;
+}
