@@ -70,12 +70,12 @@ function PetDetail() {
                 {pet.description}
               </span>
             </p>
-            <p style={{ fontWeight: "700" }}>
+            {/* <p style={{ fontWeight: "700" }}>
               Price:{" "}
               <span style={{ border: "1px solid #000", padding: "3px" }}>
                 {pet.price}
               </span>
-            </p>
+            </p> */}
             <p style={{ fontWeight: "700" }}>
               Status:{" "}
               <span style={{ border: "1px solid #000", padding: "3px" }}>
