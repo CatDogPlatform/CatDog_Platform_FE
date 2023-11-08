@@ -16,10 +16,14 @@ function StoreItem() {
     setIsDetailModalOpen(true);
   };
   const fetchGoods = async () => {
-    const res = await axios.get(
-      "https://petdom-apis.onrender.com/api/goods?search="
-    );
-    setGoods(res.data);
+    try {
+      const res = await axios.get(
+        "https://petdom-apis.onrender.com/api/goods?search="
+      );
+      setGoods(res.data);
+    } catch (error) {
+      console.error("Lỗi khi tải dữ liệu: ", error);
+    }
   };
 
   React.useEffect(() => {
