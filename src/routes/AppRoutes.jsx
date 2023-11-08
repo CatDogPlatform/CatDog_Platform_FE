@@ -51,15 +51,15 @@ const AppRoutes = () => {
                     <Route path="/usergoodlist" element={<GoodInfor />} />
                     <Route path="/userpost" element={<UserPost />} />
                     <Route path="/pet/:petId" element={<PetDetail />} />
-                       <Route path="/goods/:goodId" element={<GoodDetail />} />
+                    <Route path="/goods/:goodId" element={<GoodDetail />} />
                 </Route>
+                <Route path="/staff" element={<LayoutAdmin />}></Route>
                 <Route path="/staff" element={<LayoutAdmin />}>
                     {/* day la routes cua staff */}
                 </Route>
             </Routes>
         </BrowserRouter>
     );
-
 };
 
 export default AppRoutes;
