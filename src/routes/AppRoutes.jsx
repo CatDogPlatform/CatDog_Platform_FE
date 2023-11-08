@@ -19,6 +19,7 @@ import PayPet from "../pages/user/pet/PayPet";
 import PayGoods from "../pages/user/pet/PayGoods";
 import Profile from "../pages/user/profile/UserProfile";
 import PetDetail from "../pages/user/pet/PetDetailID";
+import GoodDetail from "../pages/user/pet/GoodsDetailID";
 const AppRoutes = () => {
   return (
     <BrowserRouter>
@@ -48,6 +49,7 @@ const AppRoutes = () => {
           <Route path="/userpetlist" element={<PetInfor />} />
           <Route path="/usergoodlist" element={<GoodInfor />} />
           <Route path="/pet/:petId" element={<PetDetail />} />
+          <Route path="/goods/:goodId" element={<GoodDetail />} />
         </Route>
         <Route path="/staff" element={<LayoutAdmin />}>
           {/* day la routes cua staff */}
