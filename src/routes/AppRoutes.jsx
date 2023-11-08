@@ -19,42 +19,47 @@ import PayPet from "../pages/user/pet/PayPet";
 import PayGoods from "../pages/user/pet/PayGoods";
 import Profile from "../pages/user/profile/UserProfile";
 import PetDetail from "../pages/user/pet/PetDetailID";
+import GoodDetail from "../pages/user/pet/GoodsDetailID";
+import UserPost from "../pages/store/UserPost";
 const AppRoutes = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/" element={<LayoutUser />}>
-          <Route path="/" element={<Home />} />
-        </Route>
-        <Route path="/admin/login" element={<LoginAdmin />}></Route>
-        <Route path="/admin" element={<LayoutAdmin />}>
-          {/* day la routes cua admin */}
-          <Route path="/admin/staffmanagement" element={<StaffTable />}></Route>
-        </Route>
-        <Route path="/" element={<LayoutUser />}>
-          <Route path="/goods" element={<GoodStore />} />
-          <Route path="/pets" element={<PetStore />} />
-          <Route path="/petsmanagement" element={<PetManagement />} />
-          <Route path="/goodsmanagement" element={<GoodManagement />} />
-          <Route path="/petlist" element={<PetInfor />} />
-          <Route path="/goodslist" element={<GoodInfor />} />
-          <Route path="/petlistupdate" element={<PetListDetail />} />
-          <Route path="/goodslistupdate" element={<GoodsListDetail />} />
-          <Route path="paygoods" element={<PayGoods />} />
-          <Route path="/paypet" element={<PayPet />} />
-          <Route path="/userprofile" element={<Profile />} />
-          <Route path="/userpetlist" element={<PetInfor />} />
-          <Route path="/usergoodlist" element={<GoodInfor />} />
-          <Route path="/pet/:petId" element={<PetDetail />} />
-        </Route>
-        <Route path="/staff" element={<LayoutAdmin />}>
-          {/* day la routes cua staff */}
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/" element={<LayoutUser />}>
+                    <Route path="/" element={<Home />} />
+                </Route>
+                <Route path="/admin/login" element={<LoginAdmin />}></Route>
+                <Route path="/admin" element={<LayoutAdmin />}>
+                    {/* day la routes cua admin */}
+                    <Route path="/admin/staffmanagement" element={<StaffTable />}></Route>
+                </Route>
+                <Route path="/" element={<LayoutUser />}>
+                    <Route path="/goods" element={<GoodStore />} />
+                    <Route path="/pets" element={<PetStore />} />
+                    <Route path="/petsmanagement" element={<PetManagement />} />
+                    <Route path="/goodsmanagement" element={<GoodManagement />} />
+                    <Route path="/petlist" element={<PetInfor />} />
+                    <Route path="/goodslist" element={<GoodInfor />} />
+                    <Route path="/petlistupdate" element={<PetListDetail />} />
+                    <Route path="/goodslistupdate" element={<GoodsListDetail />} />
+                    <Route path="paygoods" element={<PayGoods />} />
+                    <Route path="/paypet" element={<PayPet />} />
+                    <Route path="/userprofile" element={<Profile />} />
+                    <Route path="/userpetlist" element={<PetInfor />} />
+                    <Route path="/usergoodlist" element={<GoodInfor />} />
+                    <Route path="/userpost" element={<UserPost />} />
+                    <Route path="/pet/:petId" element={<PetDetail />} />
+                    <Route path="/goods/:goodId" element={<GoodDetail />} />
+                </Route>
+                <Route path="/staff" element={<LayoutAdmin />}></Route>
+                <Route path="/staff" element={<LayoutAdmin />}>
+                    {/* day la routes cua staff */}
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 };
 
 export default AppRoutes;
