@@ -1,217 +1,112 @@
-import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import {
-  Avatar,
-  Button,
-  Container,
-  Grid,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { Field, Form, Formik } from "formik";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { object, string } from "yup";
-import { Select, MenuItem } from "@mui/material";
+import { React, useState, useEffect } from "react";
+import { Button, TextField, createTheme, Typography, Dialog, IconButton, DialogContent } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import { Avatar } from "antd";
+import UpdateProfileForm from "./UpdateProfileForm";
 
-const Profile = () => {
-  const id = useParams();
-  const jsonString = localStorage.getItem("userInfor");
-  const user = JSON.parse(jsonString);
-  const phoneRegExp = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
-  const [initialValues, setInitialValues] = useState(user);
-  const [isAvatarChanged, setAvatarChanged] = useState(false);
+const theme = createTheme();
 
-  const handleAvatarChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const updatedAvatar = e.target.result;
-        const updatedValues = { ...initialValues, avatar: updatedAvatar };
-        setInitialValues(updatedValues);
-        setAvatarChanged(true);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+function UserProfile() {
+    const localStorageValue = localStorage.getItem("ACCOUNT__LOGGED");
 
-  const handleSubmit = async (values) => {
-    try {
-      if (!isAvatarChanged) {
-        values.avatar = initialValues.avatar;
-      }
-      // Dispatch update user action here if needed
-      const updatedUserString = JSON.stringify(values);
-      localStorage.setItem("userInfor", updatedUserString);
-      toast.success("Update successful!");
-    } catch (error) {
-      console.error("Error updating user:", error);
-      toast.error("Update unsuccessful!");
-    }
-  };
+    //state update profile dialog
+    const [open, setOpen] = useState(false);
+    const [loginedUser, setLoginedUser] = useState("");
 
-  return (
-    <div style={{ marginBottom: "100px" }}>
-      <Container maxWidth="lg" sx={{ mt: 8 }}>
-        <Stack spacing={1}>
-          <Paper>
-            <Grid container>
-              <Stack direction="row">
-                <Grid item xs={4} margin={5}>
-                  <Avatar
-                    type="Profile/img"
-                    sx={{ width: 180, height: 180 }}
-                    src={initialValues.avatar}
-                    alt="Avatar"
-                  />
-                  <Typography marginLeft={5}></Typography>
-                </Grid>
+    useEffect(() => {
+        const localStorageValue = localStorage.getItem("ACCOUNT__LOGGED");
+        if (localStorageValue) {
+            setLoginedUser(JSON.parse(localStorageValue));
+        }
+    }, [localStorageValue]);
 
-                <Grid item xs={8} marginLeft={15}>
-                  <h2 name="username" style={{ fontSize: 50 }}>
-                    {/* {user.username} */}
-                  </h2>
-                  <Button
-                    onClick={() =>
-                      document.getElementById("avatarInput").click()
-                    }
-                    variant="contained"
-                    startIcon={<DriveFolderUploadIcon />}
-                  >
-                    Upload Avatar
-                  </Button>
-                  <input
-                    id="avatarInput"
-                    type="file"
-                    accept="image/*"
-                    style={{ display: "none" }}
-                    onChange={handleAvatarChange}
-                  />
-                </Grid>
-              </Stack>
-            </Grid>
-          </Paper>
-          <Formik
-            initialValues={initialValues}
-            enableReinitialize
-            validationSchema={object({
-              fullName: string()
-                .required("Please enter user name")
-                .min(2, "Name is too short"),
-              email: string()
-                .required("Please enter email")
-                .min(2, "Invalid email"),
-              phone: string()
-                .required("Please enter new phone number")
-                .matches(phoneRegExp, "Phone number is not valid")
-                .min(10, "Phone number should be a minimum of 10 digits"),
-              password: string().required("Please enter Full name"),
-              gender: string().required("Please select Gender"),
-            })}
-            onSubmit={(values) => {
-              handleSubmit(values);
-            }}
-          >
-            {({ errors, touched, isValid, dirty }) => (
-              <Paper style={{ padding: 30 }}>
-                <Grid container>
-                  <Stack direction="row" justifyContent="center">
-                    <Grid item xs={4} marginRight={20}>
-                      <Typography paragraph marginRight={5}>
-                        Full Name*
-                      </Typography>
-                      <Typography paragraph marginRight={5} marginTop={7}>
-                        Email *
-                      </Typography>
-                      <Typography paragraph marginRight={5} marginTop={7}>
-                        Phone
-                      </Typography>
-                      <Typography paragraph marginRight={5} marginTop={7}>
-                        Password
-                      </Typography>
-                      <Typography paragraph marginRight={5} marginTop={7}>
-                        Gender
-                      </Typography>
-                    </Grid>
-                    <Form>
-                      <Grid item xs={8}>
-                        <Typography paragraph>
-                          <Field
-                            as={TextField}
-                            name="fullName"
-                            style={{ width: 700, height: 60 }}
-                            error={Boolean(errors.fullName) && touched.fullName}
-                            helperText={touched.fullName && errors.fullName}
-                          />
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    //Close update dialog
+    const handleClose = () => {
+        console.log("close");
+        setOpen(false);
+    };
+
+    return (
+        <>
+            <div className="p-5 userProfile-container">
+                <div className="row justify-content-center">
+                    <div className="basicInfo col-md-6 text-center p-3 border-radius">
+                        <Typography style={{ margin: theme.spacing(2, 0, 2, 0), textAlign: "center", fontWeight: 600 }} component="h3" variant="h5">
+                            User Profile
                         </Typography>
-                        <Typography paragraph>
-                          <Field
-                            as={TextField}
-                            type="email"
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Full name"
+                            value={loginedUser.name}
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
+
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            id="email"
+                            label="Email"
                             name="email"
-                            style={{ width: 700, height: 60 }}
-                            error={Boolean(errors.email) && touched.email}
-                            helperText={touched.email && errors.email}
-                          />
-                        </Typography>
-                        <Typography paragraph>
-                          <Field
-                            as={TextField}
-                            name="phone"
-                            style={{ width: 700, height: 60 }}
-                            error={Boolean(errors.phone) && touched.phone}
-                            helperText={touched.phone && errors.phone}
-                          />
-                        </Typography>
-                        <Typography paragraph>
-                          <Field
-                            as={TextField}
-                            name="password"
-                            type="password"
-                            style={{ width: 700, height: 60 }}
-                            error={Boolean(errors.password) && touched.password}
-                            helperText={touched.password && errors.password}
-                          />
-                        </Typography>
-                        <Typography paragraph>
-                          <Field
-                            as={Select}
-                            name="gender"
-                            style={{ width: 700, height: 60 }}
-                            error={Boolean(errors.gender) && touched.gender}
-                            helperText={touched.gender && errors.gender}
-                          >
-                            <MenuItem value="male">Male</MenuItem>
-                            <MenuItem value="female">Female</MenuItem>
-                            <MenuItem value="other">Other</MenuItem>
-                          </Field>
-                        </Typography>
+                            type="email"
+                            value={loginedUser.email}
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
 
-                        <Typography>
-                          <Button
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            id="phoneNumber"
+                            label="Phone number"
+                            name="phoneNumber"
+                            type="phoneNumber"
+                            value={loginedUser.phoneNumber}
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
+                        <Button
+                            className="btn btn-primary"
                             variant="contained"
-                            type="submit"
-                            startIcon={<ModeEditIcon />}
-                            disabled={!isValid || !dirty}
-                          >
-                            Edit
-                          </Button>
-                        </Typography>
-                      </Grid>
-                    </Form>
-                  </Stack>
-                </Grid>
-              </Paper>
-            )}
-          </Formik>
-        </Stack>
-      </Container>
-    </div>
-  );
-};
+                            onClick={handleClickOpen}
+                            style={{
+                                backgroundColor: "#f57c69",
+                            }}
+                        >
+                            Update
+                        </Button>
+                    </div>
+                </div>
+            </div>
 
-export default Profile;
+            {/* Dialog update profile */}
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <IconButton
+                    style={{
+                        position: "absolute",
+                        top: theme.spacing(1),
+                        right: theme.spacing(3),
+                        color: theme.palette.grey[500],
+                        zIndex: 1,
+                    }}
+                    onClick={handleClose}
+                >
+                    <Close></Close>
+                </IconButton>
+
+                <DialogContent>
+                    <UpdateProfileForm onClose={handleClose} />
+                </DialogContent>
+            </Dialog>
+        </>
+    );
+}
+export default UserProfile;
