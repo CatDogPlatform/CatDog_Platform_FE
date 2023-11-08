@@ -66,22 +66,6 @@ const Login = () => {
             onChange={handleUsernameChange}
           />
         </div>
-        <div>
-          <input
-            type="password"
-            placeholder="Password"
-            style={{ marginTop: "20px" }}
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-      </div>
-      <div className="login-forgot">
-        <p>Forgot Password ?</p>
-      </div>
-      {error && <div className="error-message">{error}</div>}
-      <div className="login-confirm">
-        <button onClick={handleLogin}>Login</button>
       </div>
     </div>
   );
