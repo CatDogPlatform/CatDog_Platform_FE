@@ -1,12 +1,8 @@
 import React from "react";
-import "./HomePostStatus.scss";
-import { faComment, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { postList } from "./FriendList";
-import axios from "axios";
-import { AiOutlineLike } from "react-icons/ai";
 
-function HomePostStatus() {
+import axios from "axios";
+
+function UserPost() {
     const [posts, setPosts] = React.useState([]);
 
     const fetchPosts = async () => {
@@ -19,7 +15,7 @@ function HomePostStatus() {
         fetchPosts();
     }, []);
     return (
-        <div className="posted">
+        <div className="posted" style={{ marginLeft: "300px" }}>
             <div className="poster">
                 {posts &&
                     posts.map((item) => (
@@ -45,15 +41,7 @@ function HomePostStatus() {
                                     ))}
                                 </div>
                             </div>
-                            <div style={{ display: "flex", height: "35px" }}>
-                                <button style={{ borderRadius: "100%", backgroundColor: "white" }} className="like-icon">
-                                    {" "}
-                                    <AiOutlineLike style={{ fontSize: "20px" }} />
-                                </button>
-                                <p style={{ margin: "8px 10px 7px 10px" }}>100</p>
-                            </div>
-
-                            <div className="posted_footer" style={{ paddingBottom: "10px" }}>
+                            <div className="posted_footer" style={{ paddingBottom: "50px" }}>
                                 {/* <div className="posted_icon1">
                                     <FontAwesomeIcon icon={faHeart} />
                                     <span
@@ -84,4 +72,4 @@ function HomePostStatus() {
     );
 }
 
-export default HomePostStatus;
+export default UserPost;
