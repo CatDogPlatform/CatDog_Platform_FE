@@ -21,6 +21,8 @@ import Profile from "../pages/user/profile/UserProfile";
 import PetDetail from "../pages/user/pet/PetDetailID";
 import GoodDetail from "../pages/user/pet/GoodsDetailID";
 import UserPost from "../pages/store/UserPost";
+import UpdatePet from "../pages/userPet/PetUpdateButton";
+
 const AppRoutes = () => {
     return (
         <BrowserRouter>
@@ -52,6 +54,7 @@ const AppRoutes = () => {
                     <Route path="/userpost" element={<UserPost />} />
                     <Route path="/pet/:petId" element={<PetDetail />} />
                     <Route path="/goods/:goodId" element={<GoodDetail />} />
+                    <Route path="/update-pet/:petId" element={<UpdatePet />} />
                 </Route>
                 <Route path="/staff" element={<LayoutAdmin />}></Route>
                 <Route path="/staff" element={<LayoutAdmin />}>
