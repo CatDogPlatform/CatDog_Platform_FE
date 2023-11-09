@@ -61,12 +61,7 @@ const PetManagement = () => {
             </div>
             <div className="image">
                 <div className="image-input">Image</div>
-                <input
-                    type="text"
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    style={{ display: "none" }}
-                    ref={fileInputRef}
-                />
+                <input type="text" onChange={(e) => setImageUrl(e.target.value)} style={{ display: "none" }} ref={fileInputRef} />
                 {/* <input
                     type="file"
                     accept="image/*"
