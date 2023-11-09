@@ -38,6 +38,7 @@ function UserProfile() {
                         <Typography style={{ margin: theme.spacing(2, 0, 2, 0), textAlign: "center", fontWeight: 600 }} component="h3" variant="h5">
                             User Profile
                         </Typography>
+
                         <TextField
                             fullWidth
                             margin="normal"
