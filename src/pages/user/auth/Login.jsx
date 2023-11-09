@@ -1,79 +1,129 @@
-import React, { useState } from "react";
-import "./Login.scss";
-import SignUp from "./SignUp";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Checkbox from "@mui/material/Checkbox";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAuth from "../../../hook/UseAuth";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import loginApi from "../../../utils/LoginAPI";
 
-const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
+export default function SignIn() {
     const navigate = useNavigate();
+    const { setAuth } = useAuth();
 
-    const handleUsernameChange = (e) => {
-        setEmail(e.target.value);
-    };
+    const validationSchema = Yup.object({
+        email: Yup.string().required("Username is required").min(3, "Username must be at least 3 characters"),
+        password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+    });
 
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleLogin = () => {
-        if (!email || !password) {
-            setError(alert("Vui lòng nhập dữ liệu"));
-        } else {
-            const url = new URL("https://64a7842d096b3f0fcc8165a8.mockapi.io/pdfAPi");
-            url.searchParams.append("email", email);
-            url.searchParams.append("password", password);
-
-            axios
-                .get(url)
-                .then((response) => {
-                    console.log(response);
-                    if (response.data.length > 0) {
-                        alert("success");
-                        navigate("/");
-                    } else {
-                        setError("Đăng nhập thất bại. Vui lòng kiểm tra tài khoản và mật khẩu.");
-                    }
-                })
-                .catch((error) => {
-                    setError("Đăng nhập thất bại. Đã xảy ra lỗi.");
-                    console.error(error);
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+            password: "",
+        },
+        validationSchema,
+        onSubmit: async (values) => {
+            try {
+                const response = await loginApi.login({
+                    email: values.email,
+                    password: values.password,
                 });
-        }
-    };
+                console.log("abc", response);
+                console.log("abccdsad", response.access_token);
+                localStorage.setItem("access_token", response.access_token);
+                localStorage.setItem("userInfor", JSON.stringify(response.data));
+                console.log("first", response.data);
+                setAuth({ user: response.data, accessToken: response.access_token });
+                navigate("/");
+                toast.success(response.message);
+            } catch (error) {
+                if (error.response) {
+                    toast.error("account or password is wrong, please check again! ");
+                } else {
+                    toast.error("Login Failed, please check your username or password again!");
+                }
+            }
+        },
+    });
 
     return (
-        <div className="login">
-            <div className="login-sign">
-                <h1>Sign in</h1>
-            </div>
-            <div>
-                <p className="login-ask">
-                    Don't have an account ?{" "}
-                    <Link to="/signup" className="login-register">
-                        Register
-                    </Link>
-                </p>
-            </div>
-            <div className="login-input">
-                <div>
-                    <input placeholder="Email" value={email} onChange={handleUsernameChange} />
-                </div>
-                <div>
-                    <input type="password" placeholder="Password" style={{ marginTop: "20px" }} value={password} onChange={handlePasswordChange} />
-                </div>
-            </div>
-            <div className="login-forgot">
-                <p>Forgot Password ?</p>
-            </div>
-            {error && <div className="error-message">{error}</div>}
-            <div className="login-confirm">
-                <button onClick={handleLogin}>Login</button>
-            </div>
-        </div>
-    );
-};
+        <Box
+            className="login_container"
+            sx={{
+                height: "100vh",
+                display: "flex",
+                alignItems: "center",
+            }}
+        >
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                    sx={{
+                        p: "40px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        border: "2px solid grey",
+                        borderRadius: "10px",
+                        boxShadow: "5px 10px 8px #888888",
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h4">
+                        Sign in
+                    </Typography>
+                    <Box component="form" noValidate sx={{ mt: 1 }}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="email"
+                            name="email"
+                            autoComplete="email"
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            error={formik.touched.email && Boolean(formik.errors.email)}
+                            helperText={formik.touched.email && formik.errors.email}
+                            autoFocus
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            error={formik.touched.password && Boolean(formik.errors.password)}
+                            helperText={formik.touched.password && formik.errors.password}
+                            autoComplete="current-password"
+                        />
+                        <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                        <br />
 
-export default Login;
+                        <div className="display__button">
+                            <button className="button-type2" type="submit" onClick={formik.handleSubmit}>
+                                <span className="btn-txt2">SIGN IN</span>
+                            </button>
+                        </div>
+                    </Box>
+                </Box>
+            </Container>
+        </Box>
+    );
+}

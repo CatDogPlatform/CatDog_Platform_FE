@@ -23,26 +23,37 @@ import GoodDetail from "../pages/user/pet/GoodsDetailID";
 import UserPost from "../pages/store/UserPost";
 import UpdatePet from "../pages/userPet/PetUpdateButton";
 import MemberList from "../pages/admin/StaffList.jsx/MemberList";
+import Unauthorized from "../components/Unauthorize/Unauthorize";
+import { ROLES } from "./Roles";
+import { staffRoutes, privateRoutes } from "./routesByRole";
+import AuthRoute from "./AuthRoute";
 
 const AppRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route key="home" element={<AuthRoute allowedRoles={[ROLES.MEMBER]} />}>
+                    <Route key="layout_public" element={<LayoutUser />}>
+                        {privateRoutes.map((route, index) => {
+                            return <Route key={index} path={route.path} element={route.element} />;
+                        })}
+                    </Route>
+                </Route>
+                <Route key="home" element={<AuthRoute allowedRoles={[ROLES.ADMIN]} />}>
+                    <Route key="layout_public" element={<LayoutAdmin />}>
+                        {staffRoutes.map((route, index) => {
+                            return <Route key={index} path={route.path} element={route.element} />;
+                        })}
+                    </Route>
+                </Route>
+                <Route path="/unauthorize" element={<Unauthorized />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/" element={<LayoutUser />}>
                     <Route path="/" element={<Home />} />
                 </Route>
-                <Route path="/admin/login" element={<LoginAdmin />}></Route>
-                <Route path="/admin" element={<LayoutAdmin />}>
-                    {/* day la routes cua admin */}
-                    <Route path="/admin/staffmanagement" element={<StaffTable />}></Route>
-                    <Route path="/admin/member" element={<MemberList />}></Route>
-                </Route>
+
                 <Route path="/" element={<LayoutUser />}>
-                    <Route path="/goods" element={<GoodStore />} />
-                    <Route path="/pets" element={<PetStore />} />
-                    <Route path="/petsmanagement" element={<PetManagement />} />
                     <Route path="/goodsmanagement" element={<GoodManagement />} />
                     <Route path="/petlist" element={<PetInfor />} />
                     <Route path="/goodslist" element={<GoodInfor />} />
@@ -51,8 +62,6 @@ const AppRoutes = () => {
                     <Route path="paygoods" element={<PayGoods />} />
                     <Route path="/paypet" element={<PayPet />} />
                     <Route path="/userprofile" element={<Profile />} />
-                    <Route path="/userpetlist" element={<PetInfor />} />
-                    <Route path="/usergoodlist" element={<GoodInfor />} />
                     <Route path="/userpost" element={<UserPost />} />
                     <Route path="/pet/:petId" element={<PetDetail />} />
                     <Route path="/goods/:goodId" element={<GoodDetail />} />

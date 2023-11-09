@@ -23,6 +23,8 @@ import {
     DialogTitle,
 } from "@mui/material";
 import "./Menu.scss";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function MemberList() {
     const [value, setValue] = useState("pending");
@@ -40,7 +42,6 @@ export default function MemberList() {
     const banCandidate = (candidate) => {
         setBannedCandidates([...bannedCandidates, candidate]);
     };
-
     const unbanCandidate = (candidate) => {
         // Loại bỏ thành phần khỏi danh sách đã ban
         const updatedBannedCandidates = bannedCandidates.filter((c) => c.postId !== candidate.postId);
@@ -80,6 +81,9 @@ export default function MemberList() {
                         prevData.map((candidate) => (candidate.postId === candidateToBan.postId ? { ...candidate, ban: true } : candidate))
                     );
                     setIsBanSuccess(true);
+                    toast.success("Success Ban !", {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
                 } else {
                     console.error("Lỗi khi cập nhật trạng thái ban");
                 }
@@ -107,6 +111,10 @@ export default function MemberList() {
                         prevData.map((candidate) => (candidate.postId === candidateToBan.postId ? { ...candidate, ban: false } : candidate))
                     );
                     setIsBanSuccess(true);
+                    setIsBanSuccess(true);
+                    toast.success("Success Unban !", {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
                 } else {
                     console.error("Lỗi khi cập nhật trạng thái unban");
                 }
@@ -142,6 +150,8 @@ export default function MemberList() {
 
     return (
         <Box sx={{ width: "100%", typography: "body1" }}>
+            <ToastContainer />
+
             <TabContext value={value}>
                 <TabList onChange={(e, newValue) => setValue(newValue)}>
                     <Tab label="Pending" value="pending" />
@@ -359,11 +369,6 @@ export default function MemberList() {
                         </Button>
                     )}
                 </DialogActions>
-            </Dialog>
-            <Dialog open={isBanSuccess} onClose={() => setIsBanSuccess(false)}>
-                <DialogContent>
-                    <DialogContentText style={{ color: "green" }}>{value === "pending" ? "Ban Success." : "Unban Success."}</DialogContentText>
-                </DialogContent>
             </Dialog>
         </Box>
     );
