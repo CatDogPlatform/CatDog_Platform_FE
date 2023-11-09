@@ -1,59 +1,59 @@
-import React, { useState } from "react"
-import "./PetListDetail.scss"
-import { petList } from "../store/ItemList"
+import React, { useState } from "react";
+import "./PetListDetail.scss";
+import { petList } from "../store/ItemList";
 const PetListDetail = () => {
-    // const [image, setImage] = useState(null)
+  // const [image, setImage] = useState(null)
 
-    // const handleImageChange = (e) => {
-    //     const file = e.target.files[0]
+  // const handleImageChange = (e) => {
+  //     const file = e.target.files[0]
 
-    //     if (file) {
-    //         const reader = new FileReader()
+  //     if (file) {
+  //         const reader = new FileReader()
 
-    //         reader.onload = (event) => {
-    //             setImage(event.target.result)
-    //         }
+  //         reader.onload = (event) => {
+  //             setImage(event.target.result)
+  //         }
 
-    //         reader.readAsDataURL(file)
-    //     }
-    // }
+  //         reader.readAsDataURL(file)
+  //     }
+  // }
 
-    // const fileInputRef = React.createRef()
+  // const fileInputRef = React.createRef()
 
-    // const handleAddButtonClick = () => {
-    //     fileInputRef.current.click()
-    // }
+  // const handleAddButtonClick = () => {
+  //     fileInputRef.current.click()
+  // }
 
-    // const handleSelectNewImage = () => {
-    //     fileInputRef.current.value = "" // Xóa giá trị đã chọn trước đó
-    //     setImage(null) // Đặt giá trị hình ảnh thành null
-    // }
+  // const handleSelectNewImage = () => {
+  //     fileInputRef.current.value = "" // Xóa giá trị đã chọn trước đó
+  //     setImage(null) // Đặt giá trị hình ảnh thành null
+  // }
 
-    return (
-        <div className="pets_management">
-            <div className="pets_title">
-                <h1>Pet List Information</h1>
-            </div>
-            <div className="image">
-                {petList.map((item) => (
-                    <div className="image-input">
-                        <img
-                            style={{
-                                width: "694px",
-                                height: "200px",
-                                borderRadius: "10px",
-                                border: "2px solid #828282",
-                                // cursor: "pointer",
-                                // objectFit: "cover",
-                                backgroundImage: "cover",
-                            }}
-                            src={item.avatar}
-                            alt="Pet Avatar"
-                        ></img>
-                    </div>
-                ))}
+  return (
+    <div className="pets_management">
+      <div className="pets_title">
+        <h1>Pet List Information</h1>
+      </div>
+      <div className="image">
+        {petList.map((item) => (
+          <div className="image-input">
+            <img
+              style={{
+                width: "694px",
+                height: "200px",
+                borderRadius: "10px",
+                border: "2px solid #828282",
+                // cursor: "pointer",
+                // objectFit: "cover",
+                backgroundImage: "cover",
+              }}
+              src={item.avatar}
+              alt="Pet Avatar"
+            ></img>
+          </div>
+        ))}
 
-                {/* <input
+        {/* <input
                     type="file"
                     accept="image/*"
                     onChange={handleImageChange}
@@ -95,89 +95,89 @@ const PetListDetail = () => {
                         <FontAwesomeIcon icon={faImages} />
                     </button>
                 )} */}
-            </div>
-            <div className="pets_management_header">
-                <div className="pets_management_cc">
-                    <div className="input">Name</div>
-                    <div className="input">Species</div>
-                    <div className="input">Description</div>
-                    <div className="input">Weight</div>
-                    <div className="input">Size</div>
-                    <div className="input">Date of Birth</div>
-                    <div className="input">Gender</div>
-                </div>
-
-                <div className="input_value">
-                    <br />
-                    <input value="ok2" />
-                    <br />
-                    <input value="ok3" />
-                    <br />
-                    <input value="ok5" />
-                    <br />
-                    <input value="ok5" />
-                    <br />
-                    <input value="ok5" />
-                    <br />
-                    <input value="ok5" />
-                    <br />
-                    <select
-                        style={{
-                            margin: "0 25px 14px 4px",
-                            height: "44px",
-                            borderRadius: "10px",
-                            border: "1px solid black",
-                            width: "300px",
-                            padding: "10px",
-                            color: "grey",
-                        }}
-                    >
-                        <option value="gender_pick">ss</option>
-                        <option value="gender_pick">s1</option>
-                        <option value="gender_pick">s2</option>
-                    </select>
-                </div>
-            </div>
-            <div className="subtmit" style={{ display: "flex" }}>
-                <button
-                    className="submit-button"
-                    style={{
-                        marginLeft: "260px",
-                        marginTop: "10px",
-                        marginBottom: "30px",
-                        padding: "18px 80px",
-                        borderRadius: "20px",
-                        cursor: "pointer",
-                        backgroundColor: "green",
-                        fontSize: "15px",
-                        border: "none",
-                        color: "white",
-                        fontWeight: "300",
-                    }}
-                >
-                    Update
-                </button>
-                <button
-                    className="submit-button"
-                    style={{
-                        marginLeft: "100px",
-                        marginTop: "10px",
-                        marginBottom: "30px",
-                        padding: "18px 80px",
-                        borderRadius: "20px",
-                        cursor: "pointer",
-                        backgroundColor: "#EB5757",
-                        fontSize: "15px",
-                        border: "none",
-                        color: "white",
-                        fontWeight: "300",
-                    }}
-                >
-                    Cancel
-                </button>
-            </div>
+      </div>
+      <div className="pets_management_header">
+        <div className="pets_management_cc">
+          <div className="input">Name</div>
+          <div className="input">Species</div>
+          <div className="input">Description</div>
+          <div className="input">Weight</div>
+          <div className="input">Size</div>
+          <div className="input">Date of Birth</div>
+          <div className="input">Gender</div>
         </div>
-    )
-}
 
-export default PetListDetail
+        <div className="input_value">
+          <br />
+          <input value="ok2" />
+          <br />
+          <input value="ok3" />
+          <br />
+          <input value="ok5" />
+          <br />
+          <input value="ok5" />
+          <br />
+          <input value="ok5" />
+          <br />
+          <input value="ok5" />
+          <br />
+          <select
+            style={{
+              margin: "0 25px 14px 4px",
+              height: "44px",
+              borderRadius: "10px",
+              border: "1px solid black",
+              width: "300px",
+              padding: "10px",
+              color: "grey",
+            }}
+          >
+            <option value="gender_pick">ss</option>
+            <option value="gender_pick">s1</option>
+            <option value="gender_pick">s2</option>
+          </select>
+        </div>
+      </div>
+      <div className="subtmit" style={{ display: "flex" }}>
+        <button
+          className="submit-button"
+          style={{
+            marginLeft: "260px",
+            marginTop: "10px",
+            marginBottom: "30px",
+            padding: "18px 80px",
+            borderRadius: "20px",
+            cursor: "pointer",
+            backgroundColor: "green",
+            fontSize: "15px",
+            border: "none",
+            color: "white",
+            fontWeight: "300",
+          }}
+        >
+          Update
+        </button>
+        <button
+          className="submit-button"
+          style={{
+            marginLeft: "100px",
+            marginTop: "10px",
+            marginBottom: "30px",
+            padding: "18px 80px",
+            borderRadius: "20px",
+            cursor: "pointer",
+            backgroundColor: "#EB5757",
+            fontSize: "15px",
+            border: "none",
+            color: "white",
+            fontWeight: "300",
+          }}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default PetListDetail;

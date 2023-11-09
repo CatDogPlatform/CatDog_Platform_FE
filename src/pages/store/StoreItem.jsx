@@ -84,16 +84,17 @@ function StoreItem() {
       className="StoreItem"
       style={{
         display: "grid",
-        gridTemplateRows: "repeat(4, minmax(0, 1fr))",
-        columnGap: "1.5rem",
-        gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+        // gridTemplateRows: "repeat(4, minmax(0, 1fr))",
+        columnGap: "20px",
+        gridTemplateColumns: "repeat(3, 1fr)",
       }}
     >
       {goods.map((item) => (
         <Card
           key={item.id}
           sx={{
-            margin: "10px 0 50px 0",
+            margin: "50px 0 0px 0",
+            width: "300px",
             boxShadow: "2px 4px 10px 1px rgba(201, 201, 201, 0.47)",
             transition: "transform 0.3s", // Thêm hiệu ứng chuyển đổi
             "&:hover": {

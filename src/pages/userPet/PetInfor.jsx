@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./PetInfor.scss";
-// import { petList } from "./ItemList";
-// import { DetailModal } from "./DetailModal";
 import axios from "axios";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -10,9 +8,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Stack } from "@mui/system";
 import { Link } from "react-router-dom";
-
+import PetDelete from "./PetDeleteButton";
 function PetInfor() {
   const [pets, setPets] = useState([]);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deletePetId, setDeletePetId] = useState(null);
 
   const fetchPets = async () => {
     const res = await axios.get(
@@ -21,77 +21,44 @@ function PetInfor() {
     console.log(res);
     setPets(res.data);
   };
+  const handleDeleteCancel = () => {
+    setDeleteDialogOpen(false);
+    setDeletePetId(null);
+  };
+
+  const handleDeleteConfirm = async () => {
+    // Thực hiện gọi API xóa pet với `deletePetId`
+    try {
+      await axios.delete(
+        `https://petdom-apis.onrender.com/api/pets/${deletePetId}`
+      );
+      setDeleteDialogOpen(false);
+      // Sau khi xóa thành công, bạn có thể cập nhật danh sách pet bằng cách gọi lại `fetchPets` hoặc các hành động khác
+    } catch (error) {
+      console.error("Lỗi khi xóa pet: ", error);
+    }
+  };
 
   React.useEffect(() => {
     fetchPets();
   }, []);
-
-  // API fake
-  const Items = [
-    {
-      _id: "1",
-      imgUrl:
-        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
-      PetName: "GOLDEN ĐỰC XINH",
-      PetType: "DOG",
-    },
-    {
-      _id: "2",
-      imgUrl:
-        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
-      PetName: "MÈO XÁM TAI CỤP XINH",
-      PetType: "CAT",
-    },
-    {
-      _id: "3",
-      imgUrl:
-        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
-      PetName: "MÈO ANH LÔNG NGẮN ",
-      PetType: "CAT",
-    },
-    {
-      _id: "4",
-      imgUrl:
-        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
-      PetName: "ALASKA HỒNG PHẤN",
-      PetType: "DOG",
-    },
-    {
-      _id: "5",
-      imgUrl:
-        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
-      PetName: "CORGI Ú CƯNG",
-      PetType: "DOG",
-    },
-  ];
-
-  // const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  // const [selectedCandidate, setSelectedCandidate] = useState(null);
-
-  // const handleCloseDetailModal = () => {
-  //   setIsDetailModalOpen(false);
-  // };
-
-  // const handleDetailClick = (item) => {
-  //   setSelectedCandidate(item);
-  //   setIsDetailModalOpen(true);
-  // };
 
   return (
     <div
       className="StoreItem"
       style={{
         display: "grid",
-        gridTemplateRows: "repeat(4, minmax(0, 1fr))",
-        columnGap: "1.5rem",
-        gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+        // gridTemplateRows: "repeat(4, minmax(0, 1fr))",
+        columnGap: "20px",
+        gridTemplateColumns: "repeat(3, 1fr)",
       }}
     >
       {pets.map((item) => (
         <Card
           key={item.id}
           sx={{
-            margin: "10px 0 50px 0",
+            margin: "50px 0 0px 0",
+            width: "300px",
             boxShadow: "2px 4px 10px 1px rgba(201, 201, 201, 0.47)",
             transition: "transform 0.3s", // Thêm hiệu ứng chuyển đổi
             "&:hover": {
@@ -105,11 +72,6 @@ function PetInfor() {
             alt={item.name}
             height="200"
             image={item.images}
-            // sx={{
-            //   ":hover": {
-            //     transform: "scale(1.1)",
-            //   },
-            // }}
           />
           <CardContent>
             <Stack spacing={2}>
@@ -149,10 +111,10 @@ function PetInfor() {
             <div
               style={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "space-between",
               }}
             >
-              <Link to={`/pet/${item._id}`}>
+              <Link to={`/update-pet/${item._id}`}>
                 <Button
                   size="small"
                   sx={{
@@ -168,38 +130,42 @@ function PetInfor() {
                     },
                   }}
                 >
-                  Detail
+                  Update
                 </Button>
               </Link>
-              <Link to={`/pet/${item._id}`}>
-                <Button
-                  size="small"
-                  sx={{
-                    color: "white",
+
+              <Button
+                size="small"
+                sx={{
+                  color: "white",
+                  backgroundColor: "#eb5757",
+                  width: "100px",
+                  borderRadius: "30px",
+                  mt: "20px",
+                  ":hover": {
                     backgroundColor: "#eb5757",
-                    width: "100px",
-                    borderRadius: "30px",
-                    mt: "20px",
-                    ":hover": {
-                      backgroundColor: "#eb5757",
-                      opacity: "0.5",
-                      transition: "0.5s",
-                    },
-                  }}
-                >
-                  Delete
-                </Button>
-              </Link>
+                    opacity: "0.5",
+                    transition: "0.5s",
+                  },
+                }}
+                onClick={() => {
+                  setDeletePetId(item._id);
+                  console.log(item._id);
+                  setDeleteDialogOpen(true);
+                }}
+              >
+                Delete
+              </Button>
             </div>
           </CardContent>
         </Card>
       ))}
 
-      {/* <DetailModal
-        isOpen={isDetailModalOpen}
-        handleCloseDetailModal={handleCloseDetailModal}
-        item={selectedCandidate}
-      /> */}
+      <PetDelete
+        open={deleteDialogOpen}
+        onClose={handleDeleteCancel}
+        onConfirm={() => handleDeleteConfirm(deletePetId)} // Truyền ID vào hàm xác nhận
+      />
     </div>
   );
 }

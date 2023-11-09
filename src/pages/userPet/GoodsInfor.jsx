@@ -1,112 +1,208 @@
-import React from "react";
-import { petList } from "../store/ItemList";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+// import "./PetItem.scss";
+// import { petList } from "./ItemList";
+// import { DetailModal } from "./DetailModal";
 import axios from "axios";
-import "./GoodInfor.scss";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { Stack } from "@mui/system";
+import { Link } from "react-router-dom";
+
 function GoodInfor() {
   const [goods, setGoods] = React.useState([]);
   const fetchGoods = async () => {
-    const res = await axios.get(
-      "https://petdom-apis.onrender.com/api/goods?search="
-    );
-    setGoods(res.data);
+    try {
+      const res = await axios.get(
+        "https://petdom-apis.onrender.com/api/goods?search="
+      );
+      setGoods(res.data);
+    } catch (error) {
+      console.error("Lỗi khi tải dữ liệu: ", error);
+    }
   };
 
   React.useEffect(() => {
     fetchGoods();
   }, []);
 
+  // API fake
+  const Items = [
+    {
+      _id: "1",
+      imgUrl:
+        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
+      PetName: "GOLDEN ĐỰC XINH",
+      PetType: "DOG",
+    },
+    {
+      _id: "2",
+      imgUrl:
+        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
+      PetName: "MÈO XÁM TAI CỤP XINH",
+      PetType: "CAT",
+    },
+    {
+      _id: "3",
+      imgUrl:
+        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
+      PetName: "MÈO ANH LÔNG NGẮN ",
+      PetType: "CAT",
+    },
+    {
+      _id: "4",
+      imgUrl:
+        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
+      PetName: "ALASKA HỒNG PHẤN",
+      PetType: "DOG",
+    },
+    {
+      _id: "5",
+      imgUrl:
+        "https://matpetfamily.com/wp-content/uploads/2020/04/7F9793A2-F45D-441C-AFAA-C11F2D918914-300x300.jpeg",
+      PetName: "CORGI Ú CƯNG",
+      PetType: "DOG",
+    },
+  ];
+
+  // const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  // const [selectedCandidate, setSelectedCandidate] = useState(null);
+
+  // const handleCloseDetailModal = () => {
+  //   setIsDetailModalOpen(false);
+  // };
+
+  // const handleDetailClick = (item) => {
+  //   setSelectedCandidate(item);
+  //   setIsDetailModalOpen(true);
+  // };
+
   return (
-    <div className="pets">
-      <div className="pets-head">
-        <h3 className="pets-title">Your Personal Goods List </h3>
-        <Link to="/goodsmanagement">
-          {" "}
-          <button className="pets-sell">+ Sell</button>
-        </Link>
-      </div>
-      {/* <div className="pets-body"> */}
-      {/* <input
-                type="text"
-                placeholder="Search"
-                style={{
-                    width: "617px",
-                    height: "39px",
-                    borderRadius: "10px",
-                    paddingLeft: "20px",
-                    border: "1px solid #d6d6d6",
+    <div
+      className="StoreItem"
+      style={{
+        display: "grid",
+        // gridTemplateRows: "repeat(4, minmax(0, 1fr))",
+        columnGap: "20px",
+        gridTemplateColumns: "repeat(3, 1fr)",
+      }}
+    >
+      {goods.map((item) => (
+        <Card
+          key={item.id}
+          sx={{
+            margin: "50px 0 0px 0",
+            width: "300px",
+            boxShadow: "2px 4px 10px 1px rgba(201, 201, 201, 0.47)",
+            transition: "transform 0.3s", // Thêm hiệu ứng chuyển đổi
+            "&:hover": {
+              transform: "scale(1.05)", // Khi hover, thay đổi tỷ lệ
+            },
+            cursor: "pointer",
+          }}
+        >
+          <CardMedia
+            component="img"
+            alt={item.name}
+            height="200"
+            image={item.images}
+            // sx={{
+            //   ":hover": {
+            //     transform: "scale(1.1)",
+            //   },
+            // }}
+          />
+          <CardContent>
+            <Stack spacing={2}>
+              <Typography
+                gutterBottom
+                fontSize="14px"
+                sx={{
+                  color: "#eb5757",
                 }}
-            /> */}
-      {/* <select
-                name=""
-                id=""
-                style={{
-                    marginLeft: "15px",
-                    height: "39px",
-                    borderRadius: "10px",
-                    border: "1px solid #d6d6d6",
-                    width: "160px",
-                    padding: "10px",
-                    color: "grey",
-                }}
-            >
-                <option value="1">All goods</option>
-                <option value="2">goods 1</option>
-                <option value="3">goods 2</option>
-            </select> */}
-      {/* <button
-                style={{
-                    width: "147px",
-                    height: "37px",
-                    borderRadius: "10px",
-                    backgroundColor: "white",
+              >
+                id: {item._id}
+              </Typography>
+              <Typography
+                gutterBottom
+                fontSize="18px"
+                fontWeight="bold"
+                sx={{
+                  ":hover": {
                     color: "#eb5757",
-                    border: "1px solid #eb5757",
-                    marginLeft: "12px",
+                    opacity: 0.5,
+                    transition: "0.5s",
+                  },
                 }}
+              >
+                {item.name}
+              </Typography>
+              <Typography
+                gutterBottom
+                fontSize="16px"
+                fontWeight={400}
+                sx={{ textTransform: "uppercase", color: "#7F8487" }}
+              >
+                Type: {item.petType}
+              </Typography>
+            </Stack>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
             >
-                Search now
-            </button> */}
-      {/* </div> */}
-      <div
-        className="StoreItem"
-        style={{
-          display: "grid",
-          gridTemplateRows: "repeat(4, minmax(0, 1fr))",
-          columnGap: "1.5rem",
-          gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-        }}
-      >
-        {/* <PetItem /> */}
-        {goods &&
-          goods.map((item) => (
-            <div style={{ margin: "10px 0 50px 0" }}>
-              <div className="StoreItem-img">
-                <img
-                  src={item.images}
-                  alt=""
-                  style={{
-                    border: "1px solid wheat",
-                    borderRadius: "8px",
-                    width: "200px",
-                    height: "178px",
+              <Link to={`/pet/${item._id}`}>
+                <Button
+                  size="small"
+                  sx={{
+                    color: "white",
+                    backgroundColor: "#eb5757",
+                    width: "100px",
+                    borderRadius: "30px",
+                    mt: "20px",
+                    ":hover": {
+                      backgroundColor: "#eb5757",
+                      opacity: "0.5",
+                      transition: "0.5s",
+                    },
                   }}
-                />
-              </div>
-              <p className="item-name" style={{ cursor: "pointer" }}>
-                <Link to="/goodslistupdate" className="link-name">
-                  {item.name}
-                </Link>
-              </p>
-              <p className="item-name" style={{ color: "#0F60DA" }}>
-                {item.price}
-              </p>
-              <span style={{ fontSize: "12px", color: "#888484" }}>
-                {item.user} - {item.location}
-              </span>
+                >
+                  Detail
+                </Button>
+              </Link>
+              <Link to={`/delete-pet/${item._id}`}>
+                <Button
+                  size="small"
+                  sx={{
+                    color: "white",
+                    backgroundColor: "#eb5757",
+                    width: "100px",
+                    borderRadius: "30px",
+                    mt: "20px",
+                    ":hover": {
+                      backgroundColor: "#eb5757",
+                      opacity: "0.5",
+                      transition: "0.5s",
+                    },
+                  }}
+                >
+                  Delete
+                </Button>
+              </Link>
             </div>
-          ))}
-      </div>
+          </CardContent>
+        </Card>
+      ))}
+
+      {/* <DetailModal
+        isOpen={isDetailModalOpen}
+        handleCloseDetailModal={handleCloseDetailModal}
+        item={selectedCandidate}
+      /> */}
     </div>
   );
 }
