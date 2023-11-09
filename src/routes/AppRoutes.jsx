@@ -22,6 +22,7 @@ import PetDetail from "../pages/user/pet/PetDetailID";
 import GoodDetail from "../pages/user/pet/GoodsDetailID";
 import UserPost from "../pages/store/UserPost";
 import UpdatePet from "../pages/userPet/PetUpdateButton";
+import MemberList from "../pages/admin/StaffList.jsx/MemberList";
 
 const AppRoutes = () => {
     return (
@@ -36,6 +37,7 @@ const AppRoutes = () => {
                 <Route path="/admin" element={<LayoutAdmin />}>
                     {/* day la routes cua admin */}
                     <Route path="/admin/staffmanagement" element={<StaffTable />}></Route>
+                    <Route path="/admin/member" element={<MemberList />}></Route>
                 </Route>
                 <Route path="/" element={<LayoutUser />}>
                     <Route path="/goods" element={<GoodStore />} />
