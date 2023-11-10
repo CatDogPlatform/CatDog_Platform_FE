@@ -79,10 +79,10 @@ const Topbar = () => {
                 </button>
                 <div className="dropdown-content" style={{ backgroundColor: "white", borderRadius: "0 0 10px 10px" }}>
                     <a href="#home">
-                        <Link to="/userpetlist">Pet</Link>
+                        <Link to="/petlist">Pet</Link>
                     </a>
                     <a href="#home">
-                        <Link to="/usergoodlist">Goods</Link>
+                        <Link to="/goodslist">Goods</Link>
                     </a>
                     <a href="#home">
                         <Link to="/userprofile">Profile</Link>

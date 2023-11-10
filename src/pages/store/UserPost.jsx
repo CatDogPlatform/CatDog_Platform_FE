@@ -36,9 +36,7 @@ function UserPost() {
                             <div className="posted_body">
                                 {item.content}
                                 <div className="posted_body_img">
-                                    {item?.images?.map((image) => (
-                                        <img src={image} alt="" />
-                                    ))}
+                                    <img src={item.images} alt="" />
                                 </div>
                             </div>
                             <div className="posted_footer" style={{ paddingBottom: "50px" }}>
