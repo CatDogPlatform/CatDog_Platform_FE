@@ -53,7 +53,6 @@ const HomePost = () => {
                     name="content"
                     placeholder="Post something"
                 />
-                <input type="text" name="imageUrl" placeholder="URL image" />
             </div>
             <hr className="post-custom" />
             <div style={{ display: "flex" }}>

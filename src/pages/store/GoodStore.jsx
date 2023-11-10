@@ -2,7 +2,9 @@ import React from "react"
 import "./GoodsStore.scss"
 import StoreItem from "./StoreItem"
 
+
 function GoodStore() {
+    
     return (
         <div className="goods">
             <div className="goods-head">

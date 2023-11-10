@@ -53,7 +53,7 @@ function PetItem() {
                             {item.price}
                         </p>
                         <span style={{ fontSize: "12px", color: "#888484" }}>
-                            {item.user.fullname}
+                            {item?.user?.fullname}
                         </span>
                     </div>
                 ))}

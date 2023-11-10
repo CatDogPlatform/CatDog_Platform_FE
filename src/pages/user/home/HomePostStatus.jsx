@@ -22,38 +22,35 @@ function HomePostStatus() {
     return (
         <div className="posted">
             <div className="poster">
-                {posts &&
-                    posts.map((item) => (
-                        <div
-                            className="post_fake"
-                            style={{
-                                marginBottom: "40px",
-                                borderBottom: "1px solid grey",
-                            }}
-                        >
-                            <div className="posted_header">
-                                <div className="posted_infor">
-                                    <span className="posted_name">
-                                        {" "}
-                                        {item.user.fullname}
-                                    </span>
+                {posts?.map((item) => (
+                    <div
+                        className="post_fake"
+                        style={{
+                            marginBottom: "40px",
+                            borderBottom: "1px solid grey",
+                        }}
+                    >
+                        <div className="posted_header">
+                            <div className="posted_infor">
+                                <span className="posted_name">
+                                    {" "}
+                                    {item?.user?.fullname}
+                                </span>
 
-                                    <br />
-                                </div>
+                                <br />
                             </div>
-                            <div className="posted_body">
-                                {item.content}
-                                <div className="posted_body_img">
-                                    {item.images.map((image) => (
-                                        <img src={image} alt="" />
-                                    ))}
-                                </div>
+                        </div>
+                        <div className="posted_body">
+                            {item.content}
+                            <div className="posted_body_img">
+                                <img src={item.images} alt="" />
                             </div>
-                            <div
-                                className="posted_footer"
-                                style={{ paddingBottom: "50px" }}
-                            >
-                                {/* <div className="posted_icon1">
+                        </div>
+                        <div
+                            className="posted_footer"
+                            style={{ paddingBottom: "50px" }}
+                        >
+                            {/* <div className="posted_icon1">
                                     <FontAwesomeIcon icon={faHeart} />
                                     <span
                                         style={{
@@ -64,7 +61,7 @@ function HomePostStatus() {
                                         {item.likes}
                                     </span>
                                 </div> */}
-                                {/* <div className="posted_icon1">
+                            {/* <div className="posted_icon1">
                                 <FontAwesomeIcon icon={faComment} />
                                 <span
                                     style={{
@@ -75,9 +72,9 @@ function HomePostStatus() {
                                     {item.cmtNumber}
                                 </span>
                             </div> */}
-                            </div>
                         </div>
-                    ))}
+                    </div>
+                ))}
             </div>
         </div>
     );
