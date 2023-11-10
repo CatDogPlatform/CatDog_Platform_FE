@@ -67,18 +67,17 @@ export default function MemberList() {
 
     const handleBanCandidate = () => {
         banCandidate(candidateToBan);
-        fetch(`https://64a7842d096b3f0fcc8165a8.mockapi.io/pdfAPi/${candidateToBan.postId}`, {
+        fetch(`https://petdom-apis.onrender.com/api/user/members/${candidateToBan._id}/ban`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ ban: true }),
         })
             .then((response) => {
                 if (response.status === 200) {
-                    setData((prevData) =>
-                        prevData.map((candidate) => (candidate.postId === candidateToBan.postId ? { ...candidate, ban: true } : candidate))
-                    );
+                    // setData((prevData) =>
+                    //     prevData.map((candidate) => (candidate._id === candidateToBan._id ? { ...candidate, ban: true } : candidate))
+                    // );
                     setIsBanSuccess(true);
                     toast.success("Success Ban !", {
                         position: toast.POSITION.TOP_RIGHT,
@@ -97,7 +96,7 @@ export default function MemberList() {
     const handleUnbanCandidate = () => {
         unbanCandidate(candidateToBan);
 
-        fetch(`https://64a7842d096b3f0fcc8165a8.mockapi.io/pdfAPi/${candidateToBan.postId}`, {
+        fetch(`https://petdom-apis.onrender.com/api/user/members/${candidateToBan._id}/unban`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -107,7 +106,7 @@ export default function MemberList() {
             .then((response) => {
                 if (response.status === 200) {
                     setData((prevData) =>
-                        prevData.map((candidate) => (candidate.postId === candidateToBan.postId ? { ...candidate, ban: false } : candidate))
+                        prevData.map((candidate) => (candidate._id === candidateToBan._id ? { ...candidate, ban: false } : candidate))
                     );
                     setIsBanSuccess(true);
                     setIsBanSuccess(true);
@@ -131,9 +130,10 @@ export default function MemberList() {
             setBannedCandidates(storedBannedCandidates);
         }
 
-        fetch("https://64a7842d096b3f0fcc8165a8.mockapi.io/pdfAPi")
+        fetch("https://petdom-apis.onrender.com/api/user/members")
             .then((response) => response.json())
             .then((result) => {
+                console.log(result);
                 setData(result);
                 setIsLoading(false);
             })
@@ -141,7 +141,7 @@ export default function MemberList() {
                 console.error("Lỗi khi gọi API:", error);
                 setIsLoading(false);
             });
-    }, []);
+    }, []); // The empty dependency array ensures that this effect runs only once when the component mounts
 
     useEffect(() => {
         sessionStorage.setItem("bannedCandidates", JSON.stringify(bannedCandidates));
@@ -199,7 +199,7 @@ export default function MemberList() {
                                         }}
                                         align="center"
                                     >
-                                        User
+                                        Email
                                     </TableCell>
                                     <TableCell
                                         sx={{
@@ -228,19 +228,19 @@ export default function MemberList() {
                                     </TableRow>
                                 ) : (
                                     data
-                                        .filter((row) => row.ban === false)
+                                        // .filter((row) => row.ban === false)
                                         .map((row) => (
                                             <TableRow key={row.postId}>
                                                 <TableCell align="center" style={{ fontWeight: "700" }}>
-                                                    {row.postId}
+                                                    {row._id}
                                                 </TableCell>
                                                 <TableCell align="center" style={{ fontWeight: "700" }}>
-                                                    {row.date}
+                                                    {row.createdAt}
                                                 </TableCell>
                                                 <TableCell align="center" style={{ fontWeight: "700" }}>
-                                                    {row.user}
+                                                    {row.email}
                                                 </TableCell>
-                                                <TableCell align="center" style={{ fontWeight: "700" }}>
+                                                <TableCell align="center" style={{ fontWeight: "700", color: "green" }}>
                                                     {row.status}
                                                 </TableCell>
                                                 <TableCell align="center">
