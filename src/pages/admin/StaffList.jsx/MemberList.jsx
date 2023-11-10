@@ -67,7 +67,6 @@ export default function MemberList() {
 
     const handleBanCandidate = () => {
         banCandidate(candidateToBan);
-
         fetch(`https://64a7842d096b3f0fcc8165a8.mockapi.io/pdfAPi/${candidateToBan.postId}`, {
             method: "PUT",
             headers: {

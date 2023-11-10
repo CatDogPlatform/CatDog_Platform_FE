@@ -91,7 +91,7 @@ const Topbar = () => {
                         <Link to="/userpost">Post</Link>
                     </a>
                     <a href="#home">
-                        <Link to="/usergoodlist" style={{ color: "red" }}>
+                        <Link to="/login" style={{ color: "red" }}>
                             Logout
                         </Link>
                     </a>

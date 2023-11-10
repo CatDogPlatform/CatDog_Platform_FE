@@ -60,8 +60,6 @@ const PetManagement = () => {
                 <h1>Pet Management</h1>
             </div>
             <div className="image">
-                <div className="image-input">Image</div>
-                <input type="text" onChange={(e) => setImageUrl(e.target.value)} style={{ display: "none" }} ref={fileInputRef} />
                 {/* <input
                     type="file"
                     accept="image/*"
@@ -108,12 +106,10 @@ const PetManagement = () => {
             <div className="pets_management_header">
                 <div className="pets_management_cc">
                     <div className="input">Name</div>
-                    <div className="input">Species</div>
+                    <div className="input">Price</div>
                     <div className="input">Description</div>
-                    <div className="input">Weight</div>
-                    <div className="input">Size</div>
-                    <div className="input">Date of Birth</div>
-                    <div className="input">Gender</div>
+                    <div className="input">Type</div>
+                    <div className="input">Status</div>
                 </div>
 
                 <div className="input_value">
@@ -127,24 +123,6 @@ const PetManagement = () => {
                     <input value="ok5" />
                     <br />
                     <input value="ok5" />
-                    <br />
-                    <input value="ok5" />
-                    <br />
-                    <select
-                        style={{
-                            margin: "0 25px 14px 4px",
-                            height: "44px",
-                            borderRadius: "10px",
-                            border: "1px solid black",
-                            width: "300px",
-                            padding: "10px",
-                            color: "grey",
-                        }}
-                    >
-                        <option value="gender_pick">ss</option>
-                        <option value="gender_pick">s1</option>
-                        <option value="gender_pick">s2</option>
-                    </select>
                 </div>
             </div>
             <div className="subtmit">
