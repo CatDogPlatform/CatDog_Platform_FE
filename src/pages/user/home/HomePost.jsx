@@ -55,23 +55,16 @@ const HomePost = () => {
 
                 // Gửi dữ liệu cùng với URL ảnh lên API
                 const uploadData = {
-                    userId: "6531f46033d7818c3ae2941e",
-                    status: "PENDING",
+                    userId: "654d1ab1cbbaa80c1338a426",
                     content: content,
                     imageUrl: uploadedImageUrl, // Sử dụng URL ảnh từ Cloudinary
                 };
 
                 console.log("dataupload", uploadData);
 
-                const apiResponse = await fetch(
+                const apiResponse = await axios.post(
                     "https://petdom-apis.onrender.com/api/posts/",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(uploadData),
-                    }
+                    uploadData
                 );
 
                 const responseData = await apiResponse.json();
