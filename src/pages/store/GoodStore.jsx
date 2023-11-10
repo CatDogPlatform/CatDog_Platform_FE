@@ -1,6 +1,7 @@
-import React from "react"
-import "./GoodsStore.scss"
-import StoreItem from "./StoreItem"
+import React from "react";
+import "./GoodsStore.scss";
+import StoreItem from "./StoreItem";
+import { Link } from "react-router-dom";
 
 
 function GoodStore() {
@@ -9,7 +10,9 @@ function GoodStore() {
         <div className="goods">
             <div className="goods-head">
                 <h3 className="goods-title">Marketplace </h3>
-                <button className="goods-sell">+ Sell</button>
+                <Link to="/goodsmanagement">
+                    <button className="goods-sell">+ Sell</button>
+                </Link>
             </div>
             <div className="goods-body">
                 <input
@@ -23,23 +26,7 @@ function GoodStore() {
                         border: "1px solid #d6d6d6",
                     }}
                 />
-                <select
-                    name=""
-                    id=""
-                    style={{
-                        marginLeft: "15px",
-                        height: "39px",
-                        borderRadius: "10px",
-                        border: "1px solid #d6d6d6",
-                        width: "160px",
-                        padding: "10px",
-                        color: "grey",
-                    }}
-                >
-                    <option value="1">All goods</option>
-                    <option value="2">goods 1</option>
-                    <option value="3">goods 2</option>
-                </select>
+
                 <button
                     style={{
                         width: "147px",
@@ -58,7 +45,7 @@ function GoodStore() {
                 <StoreItem />
             </div>
         </div>
-    )
+    );
 }
 
-export default GoodStore
+export default GoodStore;

@@ -4,6 +4,7 @@ import { faComment, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { postList } from "./FriendList";
 import axios from "axios";
+import { AiOutlineLike } from "react-icons/ai";
 
 function HomePostStatus() {
     const [posts, setPosts] = React.useState([]);
@@ -22,35 +23,54 @@ function HomePostStatus() {
     return (
         <div className="posted">
             <div className="poster">
-                {posts?.map((item) => (
-                    <div
-                        className="post_fake"
-                        style={{
-                            marginBottom: "40px",
-                            borderBottom: "1px solid grey",
-                        }}
-                    >
-                        <div className="posted_header">
-                            <div className="posted_infor">
-                                <span className="posted_name">
-                                    {" "}
-                                    {item?.user?.fullname}
-                                </span>
-
-                                <br />
-                            </div>
-                        </div>
-                        <div className="posted_body">
-                            {item.content}
-                            <div className="posted_body_img">
-                                <img src={item.images} alt="" />
-                            </div>
-                        </div>
+                {posts &&
+                    posts.map((item) => (
                         <div
-                            className="posted_footer"
-                            style={{ paddingBottom: "50px" }}
+                            className="post_fake"
+                            style={{
+                                marginBottom: "40px",
+                                borderBottom: "1px solid grey",
+                            }}
                         >
-                            {/* <div className="posted_icon1">
+                            <div className="posted_header">
+                                <div className="posted_infor">
+                                    <span className="posted_name">
+                                        {" "}
+                                        {item?.user?.fullname}
+                                    </span>
+
+                                    <br />
+                                </div>
+                            </div>
+                            <div className="posted_body">
+                                {item.content}
+                                <div className="posted_body_img">
+                                    <img src={item.images} alt="" />
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", height: "35px" }}>
+                                <button
+                                    style={{
+                                        borderRadius: "100%",
+                                        backgroundColor: "white",
+                                    }}
+                                    className="like-icon"
+                                >
+                                    {" "}
+                                    <AiOutlineLike
+                                        style={{ fontSize: "20px" }}
+                                    />
+                                </button>
+                                <p style={{ margin: "8px 10px 7px 10px" }}>
+                                    100
+                                </p>
+                            </div>
+
+                            <div
+                                className="posted_footer"
+                                style={{ paddingBottom: "10px" }}
+                            >
+                                {/* <div className="posted_icon1">
                                     <FontAwesomeIcon icon={faHeart} />
                                     <span
                                         style={{
@@ -61,7 +81,7 @@ function HomePostStatus() {
                                         {item.likes}
                                     </span>
                                 </div> */}
-                            {/* <div className="posted_icon1">
+                                {/* <div className="posted_icon1">
                                 <FontAwesomeIcon icon={faComment} />
                                 <span
                                     style={{
@@ -72,9 +92,9 @@ function HomePostStatus() {
                                     {item.cmtNumber}
                                 </span>
                             </div> */}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
             </div>
         </div>
     );

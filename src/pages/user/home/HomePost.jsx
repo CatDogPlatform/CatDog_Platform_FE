@@ -10,7 +10,7 @@ const HomePost = () => {
     const [images, setImages] = useState([]);
     const [content, setContent] = useState([]);
     const [imageUrl, setImageUrl] = useState([]);
-
+    const [uploadImg, setUploadedImage] = useState([]);
     const handleImageChange = (e) => {
         const file = e.target.files[0];
 
@@ -26,23 +26,78 @@ const HomePost = () => {
         }
     };
 
-    const handleAddImage = () => {};
+    const handleAddImage = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
+
+    const handleUpload = async () => {
+        if (images) {
+            const formData = new FormData();
+            formData.append("file", images);
+
+            try {
+                // Tải ảnh lên Cloudinary
+                const cloudinaryResponse = await fetch(
+                    "https://api.cloudinary.com/v1_1/dzqqksb9a/image/upload?upload_preset=CatDogPlatform",
+                    {
+                        method: "POST",
+                        body: formData,
+                    }
+                );
+                const cloudinaryData = await cloudinaryResponse.json();
+
+                console.log("Upload response:", cloudinaryData);
+
+                // Lấy URL an toàn từ Cloudinary
+                const uploadedImageUrl = cloudinaryData.secure_url;
+
+                // Gửi dữ liệu cùng với URL ảnh lên API
+                const uploadData = {
+                    userId: "6531f46033d7818c3ae2941e",
+                    status: "PENDING",
+                    content: content,
+                    imageUrl: uploadedImageUrl, // Sử dụng URL ảnh từ Cloudinary
+                };
+
+                console.log("dataupload", uploadData);
+
+                const apiResponse = await fetch(
+                    "https://petdom-apis.onrender.com/api/posts/",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(uploadData),
+                    }
+                );
+
+                const responseData = await apiResponse.json();
+                console.log("API response:", responseData);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+    };
 
     const fileInputRef = React.createRef();
 
     const handleCreatePost = async () => {
-        const res = await axios
-            .post("https://petdom-apis.onrender.com/api/posts/", {
-                userId,
-                content,
-                imageUrl,
-            })
-            .then((res) => {
-                setContent((prev) => [...prev, res]);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        handleUpload();
+        // const res = await axios
+        //     .post("https://petdom-apis.onrender.com/api/posts/", {
+        //         userId,
+        //         content,
+        //         imageUrl,
+        //     })
+        //     .then((res) => {
+        //         setContent((prev) => [...prev, res]);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
     };
 
     return (
@@ -53,6 +108,7 @@ const HomePost = () => {
                     name="content"
                     placeholder="Post something"
                 />
+                <input type="text" name="imageUrl" placeholder="URL image" />
             </div>
             <hr className="post-custom" />
             <div style={{ display: "flex" }}>

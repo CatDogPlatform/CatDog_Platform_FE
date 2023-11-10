@@ -1,0 +1,27 @@
+.pet-image {
+    width: 700px; /* Điều chỉnh chiều rộng ở đây */
+    height: 800px;
+  }
+.pet-image img{
+    margin-top: 30px;
+    margin-left: 180px;
+    width: 450px;
+    height: 400px;
+}
+/* styles.css */
+.custom-button {
+    color: white;
+    padding: 15px 80px;
+    border-radius: 50px;
+    border: none;
+    background-color: #eb5757;
+    cursor: pointer;
+    margin: 50px 0px 20px 0px;
+    transition: background-color 0.5s;
+  }
+  
+  .custom-button:hover {
+    background-color: #eb5757;
+    opacity: 0.5;
+  }
+  

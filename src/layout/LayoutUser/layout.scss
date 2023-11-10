@@ -1,12 +1,14 @@
 @use "sass:math";
 
 .main-body {
+    overflow-x: hidden;
     display: flex;
     flex-direction: row;
     height: 100%;
     overflow-y: hidden;
     justify-content: center;
     width: 100%;
+
     .content {
         width: 100%;
     }
