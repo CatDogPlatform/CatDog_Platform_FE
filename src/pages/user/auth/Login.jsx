@@ -20,8 +20,12 @@ export default function SignIn() {
     const { setAuth } = useAuth();
 
     const validationSchema = Yup.object({
-        email: Yup.string().required("Username is required").min(3, "Username must be at least 3 characters"),
-        password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+        email: Yup.string()
+            .required("Username is required")
+            .min(3, "Username must be at least 3 characters"),
+        password: Yup.string()
+            .required("Password is required")
+            .min(6, "Password must be at least 6 characters"),
     });
 
     const formik = useFormik({
@@ -39,16 +43,26 @@ export default function SignIn() {
                 console.log("abc", response);
                 console.log("abccdsad", response.access_token);
                 localStorage.setItem("access_token", response.access_token);
-                localStorage.setItem("userInfor", JSON.stringify(response.data));
+                localStorage.setItem(
+                    "userInfor",
+                    JSON.stringify(response.data)
+                );
                 console.log("first", response.data);
-                setAuth({ user: response.data, accessToken: response.access_token });
+                setAuth({
+                    user: response.data,
+                    accessToken: response.access_token,
+                });
                 navigate("/");
                 toast.success(response.message);
             } catch (error) {
                 if (error.response) {
-                    toast.error("account or password is wrong, please check again! ");
+                    toast.error(
+                        "account or password is wrong, please check again! "
+                    );
                 } else {
-                    toast.error("Login Failed, please check your username or password again!");
+                    toast.error(
+                        "Login Failed, please check your username or password again!"
+                    );
                 }
             }
         },
@@ -94,8 +108,13 @@ export default function SignIn() {
                             value={formik.values.email}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            error={formik.touched.email && Boolean(formik.errors.email)}
-                            helperText={formik.touched.email && formik.errors.email}
+                            error={
+                                formik.touched.email &&
+                                Boolean(formik.errors.email)
+                            }
+                            helperText={
+                                formik.touched.email && formik.errors.email
+                            }
                             autoFocus
                         />
                         <TextField
@@ -109,15 +128,30 @@ export default function SignIn() {
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            error={formik.touched.password && Boolean(formik.errors.password)}
-                            helperText={formik.touched.password && formik.errors.password}
+                            error={
+                                formik.touched.password &&
+                                Boolean(formik.errors.password)
+                            }
+                            helperText={
+                                formik.touched.password &&
+                                formik.errors.password
+                            }
                             autoComplete="current-password"
                         />
-                        <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                        <FormControlLabel
+                            control={
+                                <Checkbox value="remember" color="primary" />
+                            }
+                            label="Remember me"
+                        />
                         <br />
 
                         <div className="display__button">
-                            <button className="button-type2" type="submit" onClick={formik.handleSubmit}>
+                            <button
+                                className="button-type2"
+                                type="submit"
+                                onClick={formik.handleSubmit}
+                            >
                                 <span className="btn-txt2">SIGN IN</span>
                             </button>
                         </div>

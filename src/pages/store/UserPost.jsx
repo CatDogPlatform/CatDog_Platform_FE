@@ -3,10 +3,14 @@ import React from "react";
 import axios from "axios";
 
 function UserPost() {
+    const jsonString = localStorage.getItem("userInfor");
+    const users = JSON.parse(jsonString);
     const [posts, setPosts] = React.useState([]);
 
     const fetchPosts = async () => {
-        const res = await axios.get("https://petdom-apis.onrender.com/api/posts?search=");
+        const res = await axios.get(
+            `https://petdom-apis.onrender.com/api/user/profile/${users._id}/posts`
+        );
         console.log(res);
         setPosts(res.data);
     };
@@ -28,7 +32,10 @@ function UserPost() {
                         >
                             <div className="posted_header">
                                 <div className="posted_infor">
-                                    <span className="posted_name"> {item?.user?.fullname}</span>
+                                    <span className="posted_name">
+                                        {" "}
+                                        {item?.user?.fullname}
+                                    </span>
 
                                     <br />
                                 </div>
@@ -39,7 +46,10 @@ function UserPost() {
                                     <img src={item.images} alt="" />
                                 </div>
                             </div>
-                            <div className="posted_footer" style={{ paddingBottom: "50px" }}>
+                            <div
+                                className="posted_footer"
+                                style={{ paddingBottom: "50px" }}
+                            >
                                 {/* <div className="posted_icon1">
                                     <FontAwesomeIcon icon={faHeart} />
                                     <span

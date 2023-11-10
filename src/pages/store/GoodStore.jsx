@@ -3,7 +3,9 @@ import "./GoodsStore.scss";
 import StoreItem from "./StoreItem";
 import { Link } from "react-router-dom";
 
+
 function GoodStore() {
+    
     return (
         <div className="goods">
             <div className="goods-head">

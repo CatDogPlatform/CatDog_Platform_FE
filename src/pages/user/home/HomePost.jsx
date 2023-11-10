@@ -39,10 +39,13 @@ const HomePost = () => {
 
             try {
                 // Tải ảnh lên Cloudinary
-                const cloudinaryResponse = await fetch("https://api.cloudinary.com/v1_1/dzqqksb9a/image/upload?upload_preset=CatDogPlatform", {
-                    method: "POST",
-                    body: formData,
-                });
+                const cloudinaryResponse = await fetch(
+                    "https://api.cloudinary.com/v1_1/dzqqksb9a/image/upload?upload_preset=CatDogPlatform",
+                    {
+                        method: "POST",
+                        body: formData,
+                    }
+                );
                 const cloudinaryData = await cloudinaryResponse.json();
 
                 console.log("Upload response:", cloudinaryData);
@@ -59,7 +62,10 @@ const HomePost = () => {
 
                 console.log("dataupload", uploadData);
 
-                const apiResponse = await axios.post("https://petdom-apis.onrender.com/api/posts/", uploadData);
+                const apiResponse = await axios.post(
+                    "https://petdom-apis.onrender.com/api/posts/",
+                    uploadData
+                );
 
                 const responseData = await apiResponse.json();
                 console.log("API response:", responseData);
@@ -90,13 +96,23 @@ const HomePost = () => {
     return (
         <div className="post">
             <div className="post-input">
-                <input type="text" name="content" placeholder="Post something" />
+                <input
+                    type="text"
+                    name="content"
+                    placeholder="Post something"
+                />
                 <input type="text" name="imageUrl" placeholder="URL image" />
             </div>
             <hr className="post-custom" />
             <div style={{ display: "flex" }}>
                 <div className="post-image" style={{ flex: "1" }}>
-                    <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: "none" }} ref={fileInputRef} />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        style={{ display: "none" }}
+                        ref={fileInputRef}
+                    />
 
                     <button
                         onClick={handleAddImage}
@@ -110,7 +126,14 @@ const HomePost = () => {
                         <LuImage size={30} className="post-icon" />
                     </button>
                     {images.map((image, index) => (
-                        <img style={{ marginLeft: "10px" }} key={index} src={image} alt={`Image ${index + 1}`} width="45" height="45" />
+                        <img
+                            style={{ marginLeft: "10px" }}
+                            key={index}
+                            src={image}
+                            alt={`Image ${index + 1}`}
+                            width="45"
+                            height="45"
+                        />
                     ))}
                 </div>
                 <div style={{ flex: "0.25" }}>

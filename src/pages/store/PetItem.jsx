@@ -13,7 +13,9 @@ function PetItem() {
     const [searchTerm, setSearchTerm] = useState(""); // State lưu trữ kết quả tìm kiếm
 
     const fetchPets = async () => {
-        const res = await axios.get("https://petdom-apis.onrender.com/api/pets?search=");
+        const res = await axios.get(
+            "https://petdom-apis.onrender.com/api/pets?search="
+        );
         setPets(res.data);
     };
 
@@ -23,7 +25,9 @@ function PetItem() {
 
     // Hàm thực hiện tìm kiếm thú cưng dựa trên tên
     const searchPets = () => {
-        const results = pets.filter((pet) => pet.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        const results = pets.filter((pet) =>
+            pet.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
         return results;
     };
 
@@ -76,7 +80,8 @@ function PetItem() {
                               sx={{
                                   margin: "50px 0 0px 0",
                                   width: "300px",
-                                  boxShadow: "2px 4px 10px 1px rgba(201, 201, 201, 0.47)",
+                                  boxShadow:
+                                      "2px 4px 10px 1px rgba(201, 201, 201, 0.47)",
                                   transition: "transform 0.3s",
                                   "&:hover": {
                                       transform: "scale(1.05)",
@@ -84,7 +89,12 @@ function PetItem() {
                                   cursor: "pointer",
                               }}
                           >
-                              <CardMedia component="img" alt={item.name} height="200" image={item.images} />
+                              <CardMedia
+                                  component="img"
+                                  alt={item.name}
+                                  height="200"
+                                  image={item.images}
+                              />
                               <CardContent>
                                   <Stack spacing={2}>
                                       <Typography
@@ -110,7 +120,15 @@ function PetItem() {
                                       >
                                           {item.name}
                                       </Typography>
-                                      <Typography gutterBottom fontSize="16px" fontWeight={400} sx={{ textTransform: "uppercase", color: "#7F8487" }}>
+                                      <Typography
+                                          gutterBottom
+                                          fontSize="16px"
+                                          fontWeight={400}
+                                          sx={{
+                                              textTransform: "uppercase",
+                                              color: "#7F8487",
+                                          }}
+                                      >
                                           Type: {item.petType}
                                       </Typography>
                                   </Stack>
@@ -151,7 +169,8 @@ function PetItem() {
                                   sx={{
                                       margin: "50px 0 0px 0",
                                       width: "300px",
-                                      boxShadow: "2px 4px 10px 1px rgba(201, 201, 201, 0.47)",
+                                      boxShadow:
+                                          "2px 4px 10px 1px rgba(201, 201, 201, 0.47)",
                                       transition: "transform 0.3s",
                                       "&:hover": {
                                           transform: "scale(1.05)",
@@ -159,7 +178,12 @@ function PetItem() {
                                       cursor: "pointer",
                                   }}
                               >
-                                  <CardMedia component="img" alt={item.name} height="200" image={item.images} />
+                                  <CardMedia
+                                      component="img"
+                                      alt={item.name}
+                                      height="200"
+                                      image={item.images}
+                                  />
                                   <CardContent>
                                       <Stack spacing={2}>
                                           <Typography
@@ -189,7 +213,10 @@ function PetItem() {
                                               gutterBottom
                                               fontSize="16px"
                                               fontWeight={400}
-                                              sx={{ textTransform: "uppercase", color: "#7F8487" }}
+                                              sx={{
+                                                  textTransform: "uppercase",
+                                                  color: "#7F8487",
+                                              }}
                                           >
                                               Type: {item.petType}
                                           </Typography>
@@ -205,12 +232,14 @@ function PetItem() {
                                                   size="small"
                                                   sx={{
                                                       color: "white",
-                                                      backgroundColor: "#eb5757",
+                                                      backgroundColor:
+                                                          "#eb5757",
                                                       width: "100px",
                                                       borderRadius: "30px",
                                                       mt: "20px",
                                                       ":hover": {
-                                                          backgroundColor: "#eb5757",
+                                                          backgroundColor:
+                                                              "#eb5757",
                                                           opacity: "0.5",
                                                           transition: "0.5s",
                                                       },

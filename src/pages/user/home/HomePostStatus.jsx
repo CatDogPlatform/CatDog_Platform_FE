@@ -10,7 +10,9 @@ function HomePostStatus() {
     const [posts, setPosts] = React.useState([]);
 
     const fetchPosts = async () => {
-        const res = await axios.get("https://petdom-apis.onrender.com/api/posts?search=");
+        const res = await axios.get(
+            "https://petdom-apis.onrender.com/api/posts?search="
+        );
         console.log(res);
         setPosts(res.data);
     };
@@ -32,7 +34,10 @@ function HomePostStatus() {
                         >
                             <div className="posted_header">
                                 <div className="posted_infor">
-                                    <span className="posted_name"> {item?.user?.fullname}</span>
+                                    <span className="posted_name">
+                                        {" "}
+                                        {item?.user?.fullname}
+                                    </span>
 
                                     <br />
                                 </div>
@@ -52,12 +57,19 @@ function HomePostStatus() {
                                     className="like-icon"
                                 >
                                     {" "}
-                                    <AiOutlineLike style={{ fontSize: "20px" }} />
+                                    <AiOutlineLike
+                                        style={{ fontSize: "20px" }}
+                                    />
                                 </button>
-                                <p style={{ margin: "8px 10px 7px 10px" }}>100</p>
+                                <p style={{ margin: "8px 10px 7px 10px" }}>
+                                    100
+                                </p>
                             </div>
 
-                            <div className="posted_footer" style={{ paddingBottom: "10px" }}>
+                            <div
+                                className="posted_footer"
+                                style={{ paddingBottom: "10px" }}
+                            >
                                 {/* <div className="posted_icon1">
                                     <FontAwesomeIcon icon={faHeart} />
                                     <span
