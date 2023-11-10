@@ -36,7 +36,7 @@ function UserPost() {
                             <div className="posted_body">
                                 {item.content}
                                 <div className="posted_body_img">
-                                    {item.images.map((image) => (
+                                    {item?.images?.map((image) => (
                                         <img src={image} alt="" />
                                     ))}
                                 </div>

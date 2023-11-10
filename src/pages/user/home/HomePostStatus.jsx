@@ -40,13 +40,17 @@ function HomePostStatus() {
                             <div className="posted_body">
                                 {item.content}
                                 <div className="posted_body_img">
-                                    {item?.images?.map((image) => (
-                                        <img src={image} alt="" />
-                                    ))}
+                                    <img src={item.images} alt="" />
                                 </div>
                             </div>
                             <div style={{ display: "flex", height: "35px" }}>
-                                <button style={{ borderRadius: "100%", backgroundColor: "white" }} className="like-icon">
+                                <button
+                                    style={{
+                                        borderRadius: "100%",
+                                        backgroundColor: "white",
+                                    }}
+                                    className="like-icon"
+                                >
                                     {" "}
                                     <AiOutlineLike style={{ fontSize: "20px" }} />
                                 </button>
